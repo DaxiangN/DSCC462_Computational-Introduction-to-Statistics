@@ -29,19 +29,19 @@ for discrete variable
 $E(X) = \sum_{x \in S_X} x \cdot Pr(X = x)$
 
 for continuous variable 
-$ \int_{-\infty}^{\infty} Xf_X (X) \; dX$
+$\int_{-\infty}^{\infty} Xf_X (X) \; dX$
 
 ## 1.2. Variance - measure the dispersion of values from the expectation(mean)
 
 $var(X) = \sigma^2 = E((X - \mu)^2) = E(X^2) - E(X)^2 $
 
 for the case of continuous variable 
-$ \int_{-\infty}^{\infty} (X - \mu)^2f_X(X) \; dX$
+$\int_{-\infty}^{\infty} (X - \mu)^2f_X(X) \; dX$
 
 ## 1.3. Probability Distribution
 For any 
-$ E \subseteq S_{X} $, we can define 
-$ {p}_{X}(E) = Pr(X \in E) $, 
+$E\subseteq S_{X}$, we can define 
+${p}_{X}(E) = Pr(X \in E)$, 
 Then 
 $\displaystyle \sum_{x \subseteq S_{X}} Pr(X = x) = 1$
 
