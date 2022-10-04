@@ -1,0 +1,108 @@
+---
+title: "DSCC/CSC/TCS 462 Assignment 2"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+subtitle: Due Thursday, October 6, 2022 by 4:00 p.m.
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
+```
+
+<!-- Useful LaTeX shortcuts for E, Var, and Cov --> \newcommand{\Var}{\operatorname{Var}} \newcommand{\E}{\operatorname{E}} \newcommand{\Cov}{\operatorname{Cov}}
+
+This assignment will cover material from Lectures 6, 7, and 8.
+
+1.  Consider random variables $X$ and $Y$. Calculate $\operatorname{Var}(3X+2Y)$ given the following information. (Hint: At some point, you may need to use the fact that variance cannot be negative.)
+
+    -   $\operatorname{E}(3X+2) = 8$
+    -   $\operatorname{E}(4X+2Y) = 14$
+    -   $\operatorname{E}(2Y(X+1)) = 28$
+    -   $\operatorname{E}(X^2Y^2) = 144$
+    -   $\operatorname{Cov}(X^2,Y^2) = 36$
+    -   $\operatorname{E}(X^2 + 2Y^2) = 33$
+
+2.  The density function of $X$ is given by $f_X(x)=ax^3+bx+\frac{2}{3}$ for $x\in [0,1]$, and $\operatorname{E}(X)=\frac{7}{15}$.
+
+    a.  Find $a$ and $b$.
+
+    b.  Calculate the CDF, $F(X)$.
+
+    c.  Calculate $\Pr(X>0.75)$
+
+    d.  Suppose $Y=1.5X+2$. Calculate $\operatorname{E}(Y)$.
+
+3.  The distribution of battery life of MacBook laptops is normally distributed with a mean of 8.1 hours and a standard deviation of 1.3 hours. The distribution of Dell laptops is normally distributed with a mean of 6.8 hours with a standard deviation of 0.9 hours.
+
+    a.  Calculate the probability that a randomly selected MacBook laptop battery lasts more than 9 hours.
+
+    b.  Calculate the probability that a randomly selected Dell laptop battery lasts between 6 and 8 hours.
+
+    c.  How long must a MacBook laptop battery last to be in the top 3%?
+
+    d.  How long must a Dell laptop battery last to be at the 30th percentile?
+
+    e.  Calculate the probability that a randomly selected MacBook laptop lasts longer than the 25th percentile of Dell laptops.
+
+    f.  A randomly selected laptop has a battery life of at least 8.5 hours. Calculate the probability of this laptop being a MacBook and the probability of it being a Dell.
+
+4.  Payton applies for 12 jobs, each of which he has a 70% chance of getting a job offer for. Assume that job offers are independent of each other.
+
+    a.  How many job offers is Payton expected to receive?
+
+    b.  Calculate the probability that Payton receives job offers from all 12 places.
+
+    c.  Calculate the probability that Payton receives between 5 and 7 (inclusive, i.e., 5, 6, or 7) job offers.
+
+    d.  Calculate the probability that Payton receives strictly more than 9 job offers.
+
+    e.  Calculate the probability that Payton receives strictly fewer than 3 job offers.
+
+    f.  Calculate the variance of the number of job offer Payton is expected to receive.
+
+5.  Suppose a company has three email accounts, where the number of emails received at each account follows a Poisson distribution. Account $A$ is expected to receive 4.2 emails per hour, account $B$ is expected to receive 5.9 emails per hour, and account $C$ is expected to received 2.4 emails per hour. Assume the three accounts are independent of each other.
+
+    a.  Calculate the variance of emails received for each of the three accounts.
+
+    b.  Calculate the probability that account A receives at least 8 emails in an hour.
+
+    c.  Calculate the probability that account B receives exactly 4 emails in an hour.
+
+    d.  Calculate the probability that account C receives at most 3 emails in an hour.
+
+    e.  Calculate the probability that account B receives between 2 and 4 emails in an hour.
+
+    f.  Calculate the probability that the company receives more than 10 emails total in an hour. (Hint: the sum of Poisson random variables is also Poisson distributed. Determine $\lambda$ by doing $\operatorname{E}(A+B+C)$.)
+
+6.  Suppose that we are interested in the length of time before the next lightning strike. There are three types of lightning we are interested in: cloud-to-ground ($G$), cloud-to-air ($A$), and cloud-to-cloud ($C$). For all types of lightning, the length of time before the next strike is distributed according to an exponential distribution, but the exponential distribution has a different parameter for each type of lightning. In particular, $\lambda_{G} = 2$, $\lambda_{A} = 0.6$, and $\lambda_{C} = 0.1$.
+
+    a.  On a single plot, visualize the PDFs over the range $x \in [0, 10]$ for each of these exponential distributions. It may be helpful to use the function \`\`dexp" in R.
+
+    b.  What are $\operatorname{E}(G)$, $\operatorname{E}(A)$, and $\operatorname{E}(C)$, as well as $\operatorname{Var}(G)$, $\operatorname{Var}(A)$, and $\operatorname{Var}(C)$?
+
+    c.  Suppose that we repeatedly sample collections of $n = 100$ observations from the distribution of cloud-to-ground ($G$) lightning strike timings. What is the mean and variance of this sample distribution?
+
+    d.  Now, let us examine the empirical sampling distribution of cloud-to-ground ($G$) lightning. For each value of $n = \{10, 100, 1000\}$, sample $n$ points from the exponential distribution from $G$ a grand total of $m = 5000$ times, and record the mean of each sample. You should end up with three different sets of 5000 sample means. For each of these sets, report the sample mean and sample standard deviation. Comment on how the observed values line up with what you would expect in theory. It may be useful to use the R function \`\`rexp()".
+
+7.  Suppose that we would like to get an idea of how much coffee is consumed by the entire University of Rochester each day. We take a sample of 100 days and find that the average amount of coffee consumed by the University of Rochester per day is 580 gallons.
+
+    a.  Assume that coffee consumption comes from a normal distribution with $\sigma = 90$. Find a two-sided 95% confidence interval for the average amount of coffee consumed by the University of Rochester each day.
+
+    b.  Assuming the same information as part a, suppose that we now only want a upper-bound confidence interval. Calculate a one-sided 95% upper-bound confidence interval for the average amount of coffee consumed by the University of Rochester each day.
+
+    c.  Now, suppose that we do not know the variance of the true distribution of coffee consumption. However, in our sample, we see that $s = 80$. Find a two-sided 95% confidence interval for the average amount of coffee consumed by the University of Rochester each day.
+
+    d.  Assuming the same information as part c, suppose that we now only want a upper-bound confidence interval. Calculate a one-sided 95% upper-bound confidence interval for the average amount of coffee consumed by the University of Rochester each day.
+
+    e.  Assuming the same information as part a (i.e., known population variance), calculate the number of samples needed in order to get a two-sided 95% confidence interval for the average amount of coffee consumed by the University of Rochester each day of length 16.
+
+Short Answers:
+
+-   About how long did this assignment take you? Did you feel it was too long, too short, or reasonable?
+
+-   Who, if anyone, did you work with on this assignment?
+
+-   What questions do you have relating to any of the material we have covered so far in class?
