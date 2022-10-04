@@ -51,9 +51,9 @@ $cov(X, Y) = E(XY) - E(X)E(Y)$
 
 how to get that (hint: $\mu_X = E(X)$ and $\mu_Y = E(Y)$, and they are considered as constant):
 
-$cov(X, Y) = E((X - \mu_X)(Y - \mu_Y)) \\
-= E((XY - Y\mu_X - X\mu_Y + \mu_X \cdot \mu_Y))\\
-= E(XY) - \mu_X E(Y) - \mu_Y E(X) + E((\mu_X \mu_Y))\\
+$cov(X, Y) = \mathrm E((X - \mu_X)(Y - \mu_Y)) \\
+= \mathrm E((XY - Y\mu_X - X\mu_Y + \mu_X \cdot \mu_Y))\\
+= \mathrm E(XY) - \mu_X E(Y) - \mu_Y E(X) + E((\mu_X \mu_Y))\\
 = E(XY) - E(X)E(Y) - E(X)E(Y) + E(X)E(Y)\\
 = E(XY) - E(X)E(Y)$
 
