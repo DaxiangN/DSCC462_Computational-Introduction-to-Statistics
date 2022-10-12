@@ -59,11 +59,13 @@ $cov(X, Y) = E(XY) - E(X)E(Y)$
 
 how to get that (hint: $\mu_X = E(X)$ and $\mu_Y = E(Y)$, and they are considered as constant):
 
-\displaylines{$cov(X, Y) = E((X - \mu_X)(Y - \mu_Y)) \\
- = E((XY - Y\mu_X - X\mu_Y + \mu_X \cdot \mu_Y)) \\
+\begin{align}
+$cov(X, Y) = E((X - \mu_X)(Y - \mu_Y)) \\
+= E((XY - Y\mu_X - X\mu_Y + \mu_X \cdot \mu_Y)) \\
 = E(XY) - \mu_X E(Y) - \mu_Y E(X) + E((\mu_X \mu_Y)) \\
 = E(XY) - E(X)E(Y) - E(X)E(Y) + E(X)E(Y) \\
-= E(XY) - E(X)E(Y)$}
+= E(XY) - E(X)E(Y)$
+\end{align}
 
 ## 1.5. Correlation
 $corr(X, Y) = \frac{cov(X, Y)} {\sigma_{X}\sigma_{Y}} = \frac {E(XY) - E(X)E(Y)} {\sigma_{X}\sigma_{Y}}$
