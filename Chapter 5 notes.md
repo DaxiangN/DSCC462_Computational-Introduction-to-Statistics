@@ -76,13 +76,13 @@ $corr(X, Y) = \frac{cov(X, Y)} {\sigma_{X}\sigma_{Y}} = \frac {E(XY) - E(X)E(Y)}
 Let 
 $Z = aX + bY$
 
-Then the mean of Z is 
+Then the mean of $Z$ is 
 $\mu_{Z} = a\mu_X + b\mu_Y = aE(X) + bE(Y)$
 
-The variance of Z is 
+The variance of $Z$ is 
 $\sigma^2_{Z} = a^2\sigma^2_{X} + b^2\sigma^2_{Y} + 2ab\sigma_{X}\sigma_{Y}$
 
-The standard deviation of Z is 
+The standard deviation of $Z$ is 
 $\sigma_{Y} = \sqrt {a^2\sigma^2_{X} + b^2\sigma^2_{Y} + 2ab\sigma_{X}\sigma_{Y}}$
 
 ## 1.7. General transformation
