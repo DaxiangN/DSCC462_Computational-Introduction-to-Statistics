@@ -1,0 +1,79 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+---
+title: "DSCC/CSC/STAT 462 Assignment 3"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+subtitle: Due October 20, 2022 by 11:59 p.m.
+fontsize: 12pt
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
+```
+  
+\vspace{5pt}
+Please complete this assignment using `RMarkdown`, and submit the knitted PDF. *For all hypothesis tests, state the hypotheses, report the test statistic and p-value, and comment on the results in the context of the problem.* 
+\vspace{5pt}
+
+In order to run hypothesis tests and construct confidence intervals, you may find the `z.test` and/or `t.test` functions in `R` to be useful. For documentation, run `?z.test` and/or `?t.test` in the console.
+
+1. Recently there has been much concern regarding fatal police shootings, particularly in relation to a victim's race (with "victim" being used generally to describe the person who was fatally shot). Since the start of 2015, the Washington Post has been collecting data on every fatal shooting in America by a police office who was on duty. A subset of that data is presented in the dataset "shootings.csv."
+    a. Construct a two-sided 85% confidence interval "by-hand" (i.e. do not use the `t.test()` function, but still use `R`) on the mean age of victims. Interpret the result.
+    b. A recent census study indicates that the average age of Americans is 40 years old. Conduct a hypothesis test "by-hand" (i.e. do not use the `t.test()` function, but still use `R`) at the $\alpha=0.05$ significance level to see if the average age of victims is significantly different from 40 years old.
+    c. At the $\alpha=0.01$ significance level, test "by-hand" (i.e. do not use the `t.test()` function, but still use `R`) whether the average age of minority victims is different than the average age of non-minority victims. Assume equal variances.  
+    \vspace{5pt}
+    
+2. In the dataset named "blackfriday.csv," there is information relating to the amount of money that a sample of $n=31$ consumers spent shopping on Black Friday in 2017. 
+    a. A company is interested in determining an upper-bound on the mean amount of money spent on Black Friday in order to determine maximum effects on the economy. Construct a one-sided upper-bound 99% lower confidence interval "by-hand" (i.e. do not use the `t.test()` function, but still use `R`) for the mean amount of money spent on Black Friday. Interpret the results.
+    b. Suppose that in 2018, the average amount spent shopping on Black Friday was \$12000. Based on your sample, is there evidence to conclude that the mean amount spent shopping on Black Friday is 2017 is less than \$12000? Conduct an appropriate hypothesis test "by-hand" (i.e. do not use the `t.test()` function, but still use `R`) at the $\alpha=0.05$ significance level.  
+    \vspace{5pt}
+
+3. The Duke Chronicle collected data on all 1739 students listed in the Class of 2018's "Freshmen Picture Book." In particular, the Duke Chronicle examined hometowns, details about the students' high schools, whether they won a merit scholarship, and their sports team involvement. Ultimately, the goal was to determine trends between those who do and do not join Greek life at the university. A subset of this data is contained in the file named "greek.csv." The variable `greek` is an indicator that equals 1 if the student is involved in Greek life and 0 otherwise. The variable `hstuition` gives the amount of money spent on the student's high school tuition. 
+    a. At the $\alpha=0.1$ significance level, test whether the average high school tuition for a student who does not partake in Greek life is less than the average high school tuition for a student who does partake in Greek life. Assume unequal variances.
+    b. Construct a one-sided, lower-bound 90% confidence interval on the mean amount of high school tuition paid by Duke students. Interpret the result.   
+    \vspace{5pt}
+
+4. Seven trumpet players are given a new breathing exercise to help with their breath support. The trumpet players are asked to play a C note for as long as they can both before and after the breathing exercise. The time (in seconds) that they can hold the note for are presented below. Assume times are normally distributed. 
+\begin{center}
+\begin{tabular}{cccccccc}
+  \hline
+ Subject & 1	&2&	3&	4&	5	&6	&7\\
+ \hline
+Before & 9.1	&11.2	&11.9	&14.7	&11.7	&9.5	&14.2		\\
+After & 10.7&	14.2	&12.4	&14.6	&16.4	&10.1	&19.2	\\
+   \hline
+\end{tabular}
+\end{center}
+    a. Construct a one-sided lower-bound 95\% confidence interval for the mean after-before change time holding a note. Interpret your interval.
+    b. Perform an appropriate test at the $\alpha=0.1$ significance level to determine if the mean time holding a note is greater after the exercise than before.  
+    \vspace{5pt}
+
+5. Let $\mu$ be the average amount of time in minutes spent on social media apps each day. Based on an earlier study, it is hypothesized that $\mu=124$ minutes. It is believed, though, that people are spending increasingly more time on social media apps during the pandemic. We sample $n$ people and determine the average amount of time spent on social media apps per day in order to test the hypotheses $H_0: \mu \le 124$ vs. $H_1:\mu>124$, at the $\alpha=0.01$ significance level. Suppose we know that $\sigma=26$ minutes. 
+    a. Create a sequence of reasonable alternative values for $\mu$. Take $\mu_1 \in (124,190)$, using `seq(124,190, by=0.001)` in `R`.
+    b. Use `R` to draw a power curve for when $n=5$. You may find the `plot()` function useful. In particular, `plot(mu1, __, type = "l", ylab = "Power", xlab = expression(mu[1]))` could be a useful starting point for formatting.
+    c. Using the same general plot as part b, draw power curves for when the sample size equals $n=5,15,25,50$. You can do this using the `lines()` function in place of when you used `plot()` in part b. Make the curve for each of these a different color, and add a legend to distinguish these curves. 
+    d. What is the power of this test when $\mu_1=141$ and $n=28$?
+    e. How large of a sample size is needed to attain a power of $0.95$ when the true mean amount of time on social media apps is $\mu_1=128$?  
+    \vspace{5pt}
+
+6. When it is time for vacation, many of us look to Air BnB for renting a room/house. Data collected on $n=83$ Air BnB listings in New York City are contained in the file "airbnb.csv." Read this file into R.
+    a. Create two new variables: one for the price of full house rentals and one for the price of private room rentals. You can use code such as this to subset:
+    b. Make a histogram for each of the new variables from part a to visualize their distributions. You can use base R or ggplot2. 
+    c. Discuss why we generally can apply the central limit theorem to analyze these two variables. You should mention the histogram and the sample size, along with any potential reservations you have about using the CLT here.
+    d. Calculate the mean, standard deviation, and sample size for the price of full home rentals.
+    e. Calculate the mean, standard deviation, and sample size for the price of private room rentals.
+    f. At the $\alpha=0.05$ significance level, test "by-hand" (i.e. do not use the `t.test()` function, but still use `R`) whether the average price of renting an entire home in NYC is different from the average price of renting a private room. Use unequal variances. 
+    
+    
+Short Answers:
+
+  * About how long did this assignment take you? Did you feel it was too long, too short, or reasonable? 
+  
+  * Who, if anyone, did you work with on this assignment?
+  
+  * What questions do you have relating to any of the material we have covered so far in class?  

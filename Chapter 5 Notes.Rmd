@@ -10,12 +10,43 @@ output:
     toc: yes
   html_document:
     df_print: paged
+    toc: yes
 fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
 ```
+
+\
+
+Q1: Seems that we can treat data as normal distribution as long as the $n$ is large enough, then what are other distribution type for?
+
+There are some ways to test if your samples follow a specific distribution, there are some functions/packages in R, you can just plug-in the data and run the test.
+
+In the real world, determining distribution is really more "art" than "science". You need to combine your knowledge for specific cases and statistics.
+
+\
+
+Q2: Also, how do we determine the data distribution in the real world?
+
+Answered in Q1.
+
+\
+
+Q3: **Why??** \textcolor{red}{CDF $P(X \le x) = 1 - (1-p)^{x}$ (1 minus the probability that the first $x$ trials all failed?)} - \textcolor{red}{A possible way to get it?}: probability that it takes more than $x$ time to get success: $P(X > x) = (1 - p)^{x}$, then CDF = $P(X \le x) = 1 - (1-p)^{x}$.
+
+The understanding is correct.
+
+See picture for another way to calculate that.
+
+![](IMG_6946.jpeg){width="500"}\
+
+Q4: What is the definition of p-value? Not sure if I am understanding it correctly - If it is $Pr(X = \bar{x}|\mu = \mu_0)$, then it should be 0 if it follows normal distribution.
+
+The correct definition should be "as extreme or more extreme than $\bar{x}$". See picture:
+
+![](IMG_6947.jpeg){width="500"}\
 
 # 1. **General Knowledge**
 
@@ -55,9 +86,15 @@ Let $Z = aX + bY$
 
 Then the mean of Z is $\mu_{Z} = a\mu_X + b\mu_Y = aE(X) + bE(Y)$
 
-The variance of Z is $\sigma^2_{Z} = a^2\sigma^2_{X} + b^2\sigma^2_{Y} + 2ab\sigma_{X}\sigma_{Y}$
+The variance of Z is $\sigma^2_{Z} = a^2\sigma^2_{X} + b^2\sigma^2_{Y} + 2ab\sigma_{XY}$
 
-The standard deviation of Z is $\sigma_{Y} = \sqrt {a^2\sigma^2_{X} + b^2\sigma^2_{Y} + 2ab\sigma_{X}\sigma_{Y}}$
+**Attention!!** \textcolor{red}{Should be $2ab\sigma_{XY}$ but not $2ab\sigma_{X}\sigma_{Y}$!!}
+
+The standard deviation of Z is $\sigma_{Y} = \sqrt {a^2\sigma^2_{X} + b^2\sigma^2_{Y} + 2ab\sigma_{XY}}$
+
+How do you get it:
+
+![](IMG_6950.jpeg){width="500"}
 
 ## 1.7. General transformation
 
@@ -66,7 +103,7 @@ The standard deviation of Z is $\sigma_{Y} = \sqrt {a^2\sigma^2_{X} + b^2\sigma^
 
 # 2. **Theoretical Distributions**
 
-Theoretical probability distributions describe what we expect to happen hased on populations on a theoretical level
+Theoretical probability distributions describe what we expect to happen based on populations on a theoretical level
 
 ## 2.1. The following theoretical distributions will be considered in this class (D = discrete, C = continuous):
 
@@ -105,7 +142,7 @@ Theoretical probability distributions describe what we expect to happen hased on
     2.  Permutation: $P(n,k)$
 4.  Probability Mass Function:
     1.  $Pr(X = x) = \mathrm(^n_x) \cdot p^{x} \cdot (1-p)^{n-x}$
-    2.  $Pr(X = x) = C(n,k) \cdot p^{x} \cdot (1-p)^{n-x}$
+    2.  $Pr(X = x) = C(n,x) \cdot p^{x} \cdot (1-p)^{n-x}$
 5.  Then if you flip coin for 100 times, $n = 100$, the probability to get head for k times is $Pr(X = x) = C(100, k) \cdot p^{k} (1-p)^{100-k}$
 6.  How do you calculate it in ***R***?
     1.  Calculate the probability of x successes $Pr(X = x)$ using \textcolor{red}{dbinom(x, n, p)}
@@ -173,14 +210,14 @@ curve(f, from = 0, to = 50)
 7.  Mean $E(X) = \frac {1} {p}$
 8.  Variance $\sigma^2 = \frac {1-p} {p^2}$
 9.  **Why??** \textcolor{red}{CDF $P(X \le x) = 1 - (1-p)^{x}$ (1 minus the probability that the first $x$ trials all failed?)}
+    -   A possible way to get it: probability that it takes more than $x$ time to get success: $P(X > x) = (1 - p)^{x}$, then CDF = $P(X \le x) = 1 - (1-p)^{x}$.
 
 ## 2.6. Uniform Distribution (Continuous)
 
-1.  PDF: 
-$$
-f_X(x)= \begin{cases}\frac{1}{b-a} ,& x \in[a, b] 
-\\ 0, & \text { otherwise }\end{cases}
-$$
+1.  PDF: $$
+    f_X(x)= \begin{cases}\frac{1}{b-a} ,& x \in[a, b] 
+    \\ 0, & \text { otherwise }\end{cases}
+    $$
 2.  Why $f(x) = \frac {1} {b - a}$? Because only by that $\int^b_a f(x)dx = 1$
 3.  Notation: $X \sim Unif(a,b)$
 4.  $\mu = \frac {a+b} {2}$, $\sigma = \frac {(b-a)^2} {12}$
@@ -198,7 +235,7 @@ $$
     -   Shape of the binomial distribution when $p$ is constant but $n → \infty$
 
     -   Shape of the Poisson distribution when $\lambda → \infty$
-2.  PDF: $f(x)=\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$
+2.  **PDF**: $f(x)=\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$
 3.  Notation: $X \sim N(\mu, \sigma^2)$, note that in R, use stdev instead of variance
 4.  Mean = median = mode = $\mu$, variance = $\sigma^2$, standard deviation = $\sigma$
 
@@ -206,9 +243,35 @@ $$
 sigma = 1
 mu = -5
 f <- function(x) {
-  return(1/(sqrt(2*pi) * sigma) * exp(-0.5 * ((x - mu)/sigma)^2))
+return(1/(sqrt(2 *pi) * sigma) * exp(-0.5 * ((x - mu)/sigma)^2))
 }
-curve(f, from = -20, to = 10)
+curve(f, from = -10, to = 0)
 title(main = "PDF of normal distribution",sub = "sigma = 1, mu = -5")
 ```
 
+5.  When $\mu = 0$ and $\sigma^2 =1$, we have the standard normal distribution.
+6.  ![](Screen%20Shot%202022-10-04%20at%2012.31.02%20PM.png){width="500"}
+7.  Z score of X when $X \sim N(\mu, \sigma)$
+    -   definition of Z score: $z=\frac{x-\mu}{\sigma}$
+    -   When X follows Normal distribution, always $Z \sim N(0, 1)$
+    -   Usage example: when $\mu$ and $\sigma$ are known, how do we know the probability that $x \le a$
+        -   $z = (a - \mu)/\sigma$, $Z \sim N(0, 1)$
+        -   $P = pnorm((a - \mu)/\sigma)$
+8.  ![](Screen%20Shot%202022-10-04%20at%201.01.30%20PM.png){width="500"}
+9.  Does empirical rule work well for Z score?
+10. ![](Screen%20Shot%202022-10-04%20at%201.03.35%20PM.png){width="500"}
+11. ![](Screen%20Shot%202022-10-04%20at%201.10.24%20PM.png){width="600"}
+
+## 2.9. Central Limit Theorem(CLT) and Sampling Distribution
+
+1.  **Sampling distribution**: If $X \sim N(\mu, \sigma)$, then $\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)$
+2.  \textcolor{red}{Central Limit Theorem(CLT): If the population we are sampling from is not normal, then the shape of the distribution of $\overline{X}$ will be normal as long as $n$ is sufficiently large (typically $n \ge 30$ suffices).}
+3.  Therefore, when $n$ is large enough, even X does not follow normal distribution, $\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)$
+4.  Then the Z score of sampling mean is $Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}$, also, $Z \sim N(0, 1)$.
+
+## 2.10 Sampling Distribution of a Proportion
+
+1.  Suppose we are interested in the proportion of the time that an event occurs
+2.  If we take a sample of size $n$ and observe $x$ successes, then we could estimate the population proportion p by $\hat{p} = x/n$.
+3.  When $np \ge 5$ or $n(1-p) \ge 5$, it is considered that $\hat{p} \sim N\left(p, \sqrt{\frac{p(1-p)}{n}}\right)$.
+4.  ![](Screen%20Shot%202022-10-04%20at%202.05.44%20PM.png){width="600"}
