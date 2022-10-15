@@ -1,0 +1,101 @@
+---
+title: "DSCC/CSC/TCS 462 Assignment 1"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+subtitle: Due Thursday, September 22, 2022 by 4:00 p.m.
+fontsize: 12pt
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
+```
+
+```{r, echo=T}
+library(ggplot2)
+car_sales <- read.csv("car_sales.csv")
+```
+  
+This assignment will cover material from Lectures 3, 4, and 5. 
+
+1. For the first part of this assignment, we will explore the relationships between variables using the same "car_sales.csv" dataset as HW0. In particular, we will explore the relationships between multiple variables. 
+
+    a. Plot horsepower (y axis) against engine size (x axis). Make sure to label your axes. Comment on the form, strength, and direction of the plot. Note if there are any potential outliers. 
+
+    b. Calculate the correlation between horsepower and engine size. Comment on this value in relation to your scatterplot
+
+    c. Let's break down prices into three groups: the cheapest cars being between 0 and \$15000, and mid-range cars being between \$15000 and \$30000, and the expensive cars costing over \$30000. You can use sample code such as this to break price into these three categories. 
+    ```{r, echo=TRUE}
+    car_sales$new_var <- cut(car_sales$price,breaks=c(0,5000,10000,90000),labels=c(1,2,3))
+    ```
+    d. Plot total horsepower (y axis) against engine size (x axis), but now color points based on which price group they fall into. You can do this by specifying the `col=new_var` option in the `plot()` function. Comment on the results. 
+
+    e. Create a new categorical variable that indicates whether the fuel efficiency is greater than 30. Use the following example code as a template:
+    ```{r, echo=TRUE}
+    car_sales$fuel <- ifelse(car_sales$Fuel_efficiency > 21, "high", "low")
+    ```
+    f. Create a stacked barplot with a bar for each price group (i.e. use `new_var` from above). Each bar should be broken up into two pieces: one for high fuel efficiency and one for low fuel efficiency. Make sure to label your axes and add a legend. Comment on the results.
+    
+    g. Make side-by-side boxplots of `price` (not price groups), broken down by fuel efficiency group (low vs. high). Comment on the result:
+
+
+2. Probability: PPV and NPV. A test is created to help detect a disease The test is administered to a group of 84 subjects known to have the disease. Of this group, 59 test positive. The test is also administered to a group of 428 subjects known to not have the disease. Of this group, 12 test positive. 
+    a. Present this data in a tabular form similar to the following:
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|cc|c}
+  \hline
+Test & Have disease & Do not have disease  & Total\\
+   \hline
+   Positive & a & b & c \\
+   Negative & d & e & f \\
+   \hline
+   Total & g  & h  & i  \\
+   \hline
+\end{tabular}
+\end{table}
+    b. Calculate the sensitivity and specificity of this test directly from the data.
+ 
+    c. Assume that the prevalence of the disease is 2.7\%. Calculate the NPV and PPV with this prevalence.
+    
+    d. What conclusions can be drawn regarding the effectiveness of this test?   
+
+3. Probability: Widget production. Consider a factory that produces widgets. These widgets can have one (or more) of three different types: $A$, $B$, and $C$. Suppose that 20\% of these widgets have type $A$, 40\% have type $B$, 10\% have both type $A$ and $B$, and 50\% have type $C$. Any widget of type $C$ only has one type (i.e., there are no widgets of types $A$ and $C$, $B$ and $C$, or $A$, $B$, and $C$). Widgets can either be defective ($D$) or functional ($D^c$). Denote by $\Pr(D|X)$ the probability that a widget that has type $X$ is defective. The factory knows that $\Pr(D|A) = 0.25$, $\Pr(D|B) = 0.6$, $\Pr(D|A\cap B) = 0.4$, and $\Pr(D|C) = 0.2$. 
+
+    a. What is the probability that a widget is defective, $\Pr(D)$? (Hint: Recall the Law of Total Probability.)
+  
+    b. What is the probability that a defective widget is of type $B$, or $\Pr(B|D)$?
+  
+    c. What is the probability that a non-defective (i.e., functional) widget is either type $A$ or type $B$ (or both), i.e., what is $\Pr(A \cup B | D^c)$?
+ 
+4. Probability: Inclusion-exclusion. Recall that the additive rule tells us for events $A$ and $B$ that are not mutually exclusive that $P(A\cup B)=P(A)+P(B)-P(A\cap B)$. We can extend this additive rule to more than two events, which gives us the general inclusion-exclusion identity as follows:
+\small
+$$
+P(\cup_{i=1}^n A_i)=\sum_{i=1}^n P(A_i) - \sum_{i<j}P(A_i \cap A_j)+ \sum_{i<j<k}P(A_i \cap A_j \cap A_k)+...+(-1)^{n+1}P(A_1\cap A_2 \cap ...\cap A_n)
+\normalsize
+$$
+    a. Explicitly write the inclusion-exclusion identity for $n=3$ events, $A_1, A_2, A_3$ (i.e., reduce down so that there     aren't summations).  
+
+    b. Suppose an integer from 1 to 1000 (inclusive) is chosen uniformly at random (i.e., with equal probability). What is the probability that the integer is divisible by 5, 7, or 13? 
+
+5. Combinatorics: Consider a political setting where there are three political parties, $A$, $B$, and $C$ vying for seats on a 3-person committee. Party $A$ has 2 members, $B$ has 3 members, and $C$ has 5 members. Members of parties are distinguishable from each other, but positions on the committee are indistinguishable from each other. 
+
+    a. How many ways are there of forming an unordered 3-person committee?
+  
+    b. How many different party breakdowns (e.g., $ABC$, $CCC$, etc.) are possible when forming an unordered 3-person comittee? 
+  
+    c. How many ways are there of forming an unordered 3-person committee if at least one member must be from party $A$?
+
+6. Combinatorics: Miscellaneous counting. 
+
+    a. There are 20 indistinguishable children who would like to have one ice cream cone each. There are 6 distinct flavors of ice cream. How many distinct collections of ice cream cones are there where at least two children must order each flavor?
+
+    b. There are five cats and five dogs, all distinguishable from one another. How many distinct ways are there of seating them at a round table such that every cat is adjacent to two dogs and every dog is adjacent to two cats? Note that here two orderings are not considered distinct if it is possible to rotate one and achieve the other. For instance, if there are only four seats at the table, the order Cat 1 - Dog 1 - Cat 2 - Dog 2 is the same as Cat 2 - Dog 2 - Cat 1 - Dog 1.
+    
+Short Answers:
+
+  * About how long did this assignment take you? Did you feel it was too long, too short, or reasonable? 
+  
+  * Who, if anyone, did you work with on this assignment?
+  
+  * What questions do you have relating to any of the material we have covered so far in class?    

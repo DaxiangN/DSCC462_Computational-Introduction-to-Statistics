@@ -1,0 +1,309 @@
+---
+title: "DSCC/CSC/TCS 462 Assignment 0"
+output:
+  html_document:
+    df_print: paged
+subtitle: Due Thursday, September 8, 2022 by 3:59 p.m.
+fontsize: 12pt
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T)
+```
+  
+This assignment will cover material from Lectures 1 and 2. You are expected to use the `ggplot2` library in `R` for completing all the graphics. To learn more about graphics using `ggplot2`, please read through the guide available here:   http://www.cookbook-r.com/Graphs/. This is a wonderful open source textbook that walks through examples of many different graphics in `ggplot2`. If you have not done so already, start by installing the library. In the R console (i.e. NOT in your .RMD file), run the code `install.packages("ggplot2")`. Then, in your .RMD file, load the library as follows:
+```{r, echo=T}
+library(ggplot2)
+```
+
+For this first assignment, we will use the "car_sales.csv" dataset, which includes information about 152 different cars. In particular, we will mainly focus on the selling price of cars throughout this assignment.
+
+
+1. Getting familiar with the dataset via exploratory data analysis. 
+    a. Read the data into RStudio and summarize the data with the `summary()` function. 
+    ```{r}
+    df <- read.csv("car_sales.csv")
+    summary(df)
+    ```
+    
+    
+    b. How many bins does Sturges' formula suggest we use for a histogram of `price`? Show your work. 
+    
+    ```{r}
+    k = log2(152) + 1
+    print(paste0("Result of Sturges' formula is ",k))
+    print("Number of bins is 9 after rounding up.")
+    ```
+    
+    
+    c. Create a histogram of `price` using the number of bins suggested by Sturges' formula in 1b. Make sure to appropriately title the histogram and label the axes. Comment on the center, shape, and spread.
+
+    ```{r}
+    hist(df$price, breaks = "Sturges", xlab = "price", main = "Histogram of car price")
+    ggplot(df, aes(x = price))+ 
+      geom_histogram(bins = 9,  color = "black", fill = "black", alpha = 0.5) + 
+      theme_bw() + 
+      theme(panel.grid=element_blank()) + 
+      labs(title = "Histogram of car price", x = "Price", y = "Frequency")
+    ```
+This histogram has one center. Its shape is asymmetric, with the peak closer to the left (right skewed), most of the data points appear to be close to the center.
+
+    
+2. Measures of center and spread for the selling price of cars.
+    a. Calculate the mean, median, and 10\% trimmed mean of the selling price. Report the mean, median, and 10\% trimmed mean on the histogram. In particular, create a red vertical line on the histogram at the mean, and report the value of the mean in red next to the line using the form "$\bar{x}=$". Create a blue vertical line on the histogram at the median, and report the value of the median in blue next to the line using the form "$\tilde{x}=$". Create a green vertical line on the histogram at the 10\% trimmed mean, and report the value of the 10\% trimmed mean in green next to the line using the form "$\bar{x}_{10}=$" (to get $\bar{x}_{10}$ to print on the plot, use `bar(x)[10]` within the `paste()` function). 
+    
+    ```{r}
+    mean <- mean(df$price)
+    median <- median(df$price)
+    trimmed_mean <- mean(df$price, trim = 0.1)
+    hist(df$price, breaks = "Sturges", xlab = "price", main = "Histogram of car price")
+    abline(v = mean, col="red")
+    text(mean + 10000, 50, substitute(paste(bar(x),"=", m), list(m=round(mean,3))),col=2)
+    abline(v = median, col = "blue")
+    text(median - 6000, 50, substitute(paste(tilde(x),"=", m), list(m=round(median,3))),col="blue")
+    abline(v = trimmed_mean, col = "green")
+    text(trimmed_mean + 10000, 40, substitute(paste(bar(x)[10],"=", m), list(m=round(trimmed_mean,3))),col="green")
+    ```
+    
+    ```{r}
+    ggplot(df, aes(x = price))+ 
+      geom_vline(xintercept = c(mean(df$price), median(df$price), mean(df$price, trim = 0.1)), color = c("red", "blue", "green"), size = 1) + 
+      geom_histogram(bins = 9,  color = "black", fill = "black", alpha = 0.5) + 
+      annotate("text", x = mean + 10000, y = 50, label = substitute(paste(bar(x),"=", m), list(m=round(mean,3))), color = "red", size = 5) + 
+      annotate("text", x = median - 6000, y = 50, label = substitute(paste(tilde(x),"=", m), list(m=round(median,3))), color = "blue", size = 5) + 
+      annotate("text", x = trimmed_mean + 10000, y = 40, label = substitute(paste(bar(x)[10],"=", m), list(m=round(trimmed_mean,3))), color = "green", size = 5) + 
+      theme_bw() + 
+      theme(panel.grid=element_blank()) + 
+      labs(title = "Histogram of car price", x = "Price", y = "Frequency")
+    ```
+
+    
+    b. Calculate and report the 25th and 75th percentiles. 
+    ```{r}
+    Q1 <- quantile(df$price, 0.25)
+    Q3 <- quantile(df$price, 0.75)
+    print(paste0("The 25th percentile is ", Q1))
+    print(paste0("The 75th percentile is ", Q3))
+    ```
+    
+    c. Calculate and report the interquartile range. 
+
+    ```{r}
+    distance <- Q3 - Q1
+    print(paste0("The interquartile range is ", distance))
+    ```
+
+    
+    d. Calculate and report the standard span, the lower fence, and the upper fence. 
+
+    ```{r}
+    lower_fence <- Q1 - 1.5 * (Q3 - Q1)
+    upper_fence <- Q3 + 1.5 * (Q3 - Q1)
+    standard_span <- 1.5 * (Q3 - Q1)
+    print(paste0("Lower fence is ", lower_fence, "."))
+    print(paste0("Upper fence is ", upper_fence, "."))
+    print(paste0("Standard Span is ", standard_span, "."))
+    ```
+
+
+    e. Are there any outliers? Subset the outlying points. Use code based on the following:
+    ```{r}
+    upper <- df[df$price >= upper_fence, "price"] #upper outliers
+    lower <- df[df$price <= lower_fence, "price"] #lower outliers
+    # Use upper and lower fence values from part g.
+    upper <- paste0(upper)
+    upper <- paste0(upper, collapse = ",")
+    print(paste0("upper outliers are ", upper, "."))
+    print("There is no lower outlier.")
+    ```
+    
+    f. Calculate and report the variance, standard deviation, and coefficient of variation of car prices. 
+
+    ```{r}
+    variance <- var(df$price) # variance of car prices
+    std <- sd(df$price) # standard deviation
+    CV <- std / mean # coefficient of variation of car prices
+    print(paste0("variance of car prices is ", variance))
+    print(paste0("standard deviation of car prices is ", std))
+    print(paste0("coefficient of variation of car prices is ", CV))
+    ```
+
+
+    g. We have seen from the histogram that the data are skewed. Calculate and report the skewness. Comment on this value and how it matches with what you visually see in the histogram. 
+
+    ```{r}
+    library(moments)
+    skew <- skewness(df$price)
+    print(paste0("The skewness of car prices is ", skew))
+    ```
+
+
+3. Transforming the data.
+    a. Use a Box-Cox power transformation to appropriately transform the data. In particular, use the `boxcox()` function in the `MASS` library. Report the recommended transformation. Do not apply this transformation to the data yet. (Note: the `boxcox` function automatically produces a plot. You do NOT need to make this in `ggplot2`.)
+    
+    b. Apply the exact Box-Cox recommended transformation (rounded to four decimal places) to the data (this transformation is hereon referred to as the Box-Cox transformed data). Use the `summary()` function to summarize the results of this transformation. 
+
+    ```{r}
+    library(MASS)
+    bc1 <- boxcox(df$price~1)
+    lambda <- bc1$x[bc1$y==max(bc1$y)]
+    trans <- (df$price ** lambda - 1) / lambda
+    summary(trans)
+    ```
+
+
+    c. Create a histogram of the Box-Cox transformed data using the number of bins suggested by Sturges' formula. On this histogram, report the mean, median, and 10\% trimmed mean using the same formatting options as in part 2a above. Comment on the center, shape, and spread. 
+
+    ```{r}
+    mean1 <- mean(trans)
+    median1 <- median(trans)
+    trimmed_mean1 <- mean(trans, trim = 0.1)
+    hist(trans, breaks = "Sturges", xlab = "transformed car price", main = "Histogram of the Box-Cox transformed data")
+    abline(v = mean1, col="red")
+    text(mean1 + 0.004, 30, substitute(paste(bar(x),"=", m), list(m=round(mean1,3))),col=2)
+    abline(v = median1, col = "blue")
+    text(median1 - 0.004, 30, substitute(paste(tilde(x),"=", m), list(m=round(median1,3))),col="blue")
+    abline(v = trimmed_mean1, col = "green")
+    text(trimmed_mean1 + 0.004, 20, substitute(paste(bar(x)[10],"=", m), list(m=round(trimmed_mean1,3))),col="green")
+    ```
+    
+    ```{r}
+    df1 <- df
+    df1[,"price"] <- trans
+    ggplot(df1, aes(x = price))+ 
+          geom_vline(xintercept = c(mean(df1$price), median(df1$price), mean(df1$price, trim = 0.1)), color = c("red", "blue", "green"), size = 1) + 
+          geom_histogram(bins = 9,  color = "black", fill = "black", alpha = 0.5) + 
+          annotate("text", x = mean1 + 0.004, y = 30, label = substitute(paste(bar(x),"=", m), list(m=round(mean1,3))), color = "red", size = 5) + 
+          annotate("text", x = median1 - 0.004, y = 30, label = substitute(paste(tilde(x),"=", m), list(m=round(median1,3))), color = "blue", size = 5) + 
+          annotate("text", x = trimmed_mean1 + 0.004, y = 20, label = substitute(paste(bar(x)[10],"=", m), list(m=round(trimmed_mean1,3))), color = "green", size = 5) + 
+          theme_bw() + 
+          theme(panel.grid=element_blank()) + 
+          labs(title = "Histogram of the Box-Cox transformed data", x = "Price", y = "Frequency")
+    ```
+    
+This histogram has one center. Its shape is symmetric, with peak at center. Most of the data points appear to be close to the center instead of largely spread.
+
+    d. As an alternative to the Box-Cox transformation, let's also use a log transformation. Apply the log transformation to the original `price` data (this transformation is hereon referred to as the log transformed data). Use the `summary()` function to summarize the results of this transformation. 
+
+    ```{r}
+    trans2 <- log10(df$price)
+    summary(trans2)
+    ```
+
+
+    e. Create a histogram of the log transformed data using the number of bins suggested by Sturges' formula. On this histogram, report the mean, median, and 10\% trimmed mean using the same formatting options as in part 2a and 3c above. Comment on the center shape and spread. 
+
+    ```{r}
+    mean2 <- mean(trans2)
+    median2 <- median(trans2)
+    trimmed_mean2 <- mean(trans2, trim = 0.1)
+    hist(trans2, breaks = "Sturges", xlab = "transformed car price", main = "Histogram of the log transformed data")
+    abline(v = mean2, col="red")
+    text(mean2 + 0.1, 30, substitute(paste(bar(x),"=", m), list(m=round(mean2,3))),col=2)
+    abline(v = median2, col = "blue")
+    text(median2 - 0.1, 30, substitute(paste(tilde(x),"=", m), list(m=round(median2,3))),col="blue")
+    abline(v = trimmed_mean2, col = "green")
+    text(trimmed_mean2 + 0.1, 20, substitute(paste(bar(x)[10],"=", m), list(m=round(trimmed_mean2,3))),col="green")
+    ```
+
+
+    ```{r}
+    df2 <- df
+        df2[,"price"] <- trans2
+        ggplot(df2, aes(x = price))+ 
+              geom_vline(xintercept = c(mean(df2$price), median(df2$price), mean(df2$price, trim = 0.1)), color = c("red", "blue", "green"), size = 1) + 
+              geom_histogram(bins = 9,  color = "black", fill = "black", alpha = 0.5) + 
+              annotate("text", x = mean2 + 0.1, y = 30, label = substitute(paste(bar(x),"=", m), list(m=round(mean2,3))), color = "red", size = 5) + 
+              annotate("text", x = median2 - 0.1, y = 30, label = substitute(paste(tilde(x),"=", m), list(m=round(median2,3))), color = "blue", size = 5) + 
+              annotate("text", x = trimmed_mean2 + 0.1, y = 20, label = substitute(paste(bar(x)[10],"=", m), list(m=round(trimmed_mean2,3))), color = "green", size = 5) + 
+              theme_bw() + 
+              theme(panel.grid=element_blank()) + 
+              labs(title = "Histogram of the log transformed data", x = "Price", y = "Frequency")
+    ```
+
+This histogram has one center. Its shape is asymmetric, with peak slightly closer to the left. Most of the data points appear to be close to the center instead of largely spread.
+   
+    f. Create a qqplot for the original data, a qqplot for the Box-Cox transformed data, and a qqplot of the log transformed data. Comment on the results. 
+
+    ```{r}
+    qqnorm(df$price, main = "qqplot for original data")
+    qqline(df$price)
+    ```
+    
+    ```{r}
+    ggplot(df, aes(sample = price))+ 
+      geom_qq() + geom_qq_line() + 
+      labs(title="Normal Q-Q Plot for original data", x = "Theoratical Quantiles", y = "Sample Quantiles") +    
+      theme_bw() +
+      theme(panel.grid=element_blank(), aspect.ratio = 1)
+    ```
+    
+    
+    ```{r}
+    qqnorm(trans, main = "qqplot for the Box-Cox transformed data")
+    qqline(trans)
+    ```
+
+    ```{r, fig.width=6, fig.height=6}
+    ggplot(df1, aes(sample = price))+ 
+      geom_qq() + geom_qq_line() + 
+      labs(title="Normal Q-Q Plot for the Box-Cox transformed data", x = "Theoratical Quantiles", y = "Sample Quantiles") +    
+      theme_bw() +
+      theme(panel.grid=element_blank(), aspect.ratio = 1)
+    ```
+
+    ```{r}
+    qqnorm(trans2, main = "qqplot for the log transformed data")
+    qqline(trans2)
+    ```
+
+    ```{r}
+    ggplot(df2, aes(sample = price))+ 
+      geom_qq() + geom_qq_line() + 
+      labs(title="Normal Q-Q Plot for the log transformed data", x = "Theoratical Quantiles", y = "Sample Quantiles") +    
+      theme_bw() +
+      theme(panel.grid=element_blank(), aspect.ratio = 1)
+    ```
+
+The Box-Cox transformed data appear to show distribution mostly close to normal distribution.
+
+
+    g. Evaluate the empirical rule for the original data, the Box-Cox transformed data, and the log transformed data. In particular, make a table similar to that on slide 71 of the Chapter 2 notes. Comment on the results. Do either of the transformed data seem to be "better" to work with? Note, you can use code similar to the following to answer this question:
+    ```{r eval=FALSE, echo=TRUE}
+    ###Create a matrix named "mat" with 9 rows & 5 columns
+    mat <- matrix(NA, nrow=9, ncol=5)
+    
+    ### Set row names and column names
+    rownames(mat) <- c("Original","","","Box-Cox","","","Log","","")
+    colnames(mat) <- c("x","xbar-k*s", "xbar+k*s", "Theoretical %","Actual %")
+    
+    ### Fill in known quantities
+    mat[,1] <- c(1,2,3)
+    mat[,4]<-c(68,95,99.7)
+    
+    ### Fill in calculated values (I only give a preview of this and leave the remaining calculations for you).
+    ### I use "orig" as the original data, "bcdat" as the Box-Cox transformed data, 
+    ### and "logdat" as the log-transformed data. 
+    ### Name your variables anything you'd like.
+    mat[3,2] <- mean(orig)-3*sd(orig)
+    mat[2,3] <- mean(orig)+2*sd(orig)
+    mat[4,5] <- sum(bcdat >=mean(bcdat)-1*sd(bcdat) 
+                    & bcdat <= mean(bcdat)+1*sd(bcdat))/length(bcdat)*100
+    mat[9,5] <- sum(logdat >=mean(logdat)-3*sd(logdat) 
+                    & logdat <= mean(logdat)+3*sd(logdat))/length(logdat)*100
+
+    
+    ### Create a table
+    library(knitr)
+    kable(x=mat, digits=2,row.names=T, format="markdown")
+    
+    ```
+    h. In your own words, provide some intuition about (1) why car price may not follow a normal distribution, and (2) why it may be useful to transform the data into a form that more closely follows a normal distribution.
+    
+    
+Short Answers:
+
+  * About how long did this assignment take you? Did you feel it was too long, too short, or reasonable? 
+  
+  * Who, if anyone, did you work with on this assignment?
+  
+  * What questions do you have relating to any of the material we have covered so far in class?    

@@ -1,0 +1,83 @@
+---
+title: "Chaper 6 - Confidence Intervals"
+author: "Daxiang Na"
+date: "2022-10-06"
+CJKmainfont: Songti SC
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+```
+
+\
+
+Q1: For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference?
+
+# CLT and Sampling Distribution
+
+```{r}
+f <- function(x,N) {
+  df <- replicate(N, rexp(x, 2))
+  a <- df[,1]
+  return(a)
+}
+
+a <- f(10,1)
+b <- f(100,1)
+c <- f(1000,1)
+
+```
+
+```{r}
+set.seed(42)
+library(dplyr)
+f <- function(x) {
+  N <- 30
+  df <- as.data.frame(replicate(N, rexp(x, 2))) %>% 
+    summarise_if(is.numeric, mean)
+  a <- as.numeric(as.vector(df[1,]))
+  return(a)
+}
+a <- f(10)
+mean(a)
+sd(a)
+0.5/sqrt(10)
+
+b <- f(20)
+mean(b)
+sd(b)
+0.5/sqrt(20)
+
+d <- f(30)
+mean(d)
+sd(d)
+0.5/sqrt(30)
+
+c <- rexp(100, 2)
+mean(c)
+sd(c)
+0.5/sqrt(1)
+```
+
+# Margin of Error and Sample Size
+
+$n=\left\lceil\frac{z_{\alpha / 2}^2 \cdot \sigma^2}{m^2}\right\rceil$
+
+# 这里的以前雨我无瓜
+
+**这里的以前雨我无瓜**
+
+这里的以前雨我无瓜
