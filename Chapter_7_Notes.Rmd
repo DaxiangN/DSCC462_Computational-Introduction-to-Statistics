@@ -1,0 +1,98 @@
+---
+title: "Chapter 7 Hypothesis Testing"
+author: "Daxiang Na"
+date: "2022-10-15"
+CJKmainfont: Songti SC
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+```
+
+# Hypothesis Testing 假设检验
+
+## Definition and Concepts
+
+1.  null hypothesis, $H_{0}$: "no change"
+2.  We believe the null hypothesis to be true unless overwhelming evidence exists to the contrary ("innocent until proven guilty")
+3.  The alternative hypothesis, $H_{1}$, or $H_{A}$ (in this class, we all use $H_{1}$), is a second statement that contradicts $H_{0}$.
+4.  Either $H_{0}$ or $H_{1}$ must be true (mutually exclusive, exhaustive).
+5.  We need overwhelming evidence to conclude that $H_{1}$ is true. - That is why the alpha value, or the "threshold", should be very low, so the chance that $H_{0}$ is true is very low.
+
+## Calculation
+
+1.  We calculate the probability of $H_{0}$ is true, which is the probability that you get a mean value from samples that is as extreme or more extreme than $\bar{X}$ if you assume that $H_{0}$ is true.
+2.  For now, we assume the population show normal distribution.
+3.  z-test: $$
+    Z=\frac{\bar{X}-\mu}{\sigma / \sqrt{n}}
+    $$
+4.  calculating the p-values for z-tests:
+
+![](Screen%20Shot%202022-10-15%20at%2011.51.18%20AM.png) 
+
+    Notes for two sided hypothesis:
+
+    when z \< 0, you get probability (pnorm(z)) like this:
+
+    ```{r, fig.width=500}
+        library(tidyverse)
+        # Return dnorm(x) for 0 < x < 2, and NA for all other x
+        dnorm_limit <- function(x) {
+            y <- dnorm(x)
+            y[x > -1.5] <- NA
+            return(y)
+        }
+        
+        # ggplot() with dummy data
+        p <- ggplot(data.frame(x = c(-3, 3)), aes(x = x))
+        
+        p +
+          stat_function(fun = dnorm_limit, geom = "area", fill = "blue", alpha = 0.2) +
+          stat_function(fun = dnorm)
+    ```
+
+when z \> 0, you get probability (1 - pnorm(z))like this:
+
+```{r, fig.width=500}
+dnorm_limit <- function(x) {
+y <- dnorm(x)
+y[x < 1.5] <- NA
+return(y)
+}
+
+# ggplot() with dummy data
+p <- ggplot(data.frame(x = c(-3, 3)), aes(x = x))
+
+p +
+stat_function(fun = dnorm_limit, geom = "area", fill = "blue", alpha = 0.2) +
+stat_function(fun = dnorm)
+```
+
+# Hypothesis Testing and Confidence Interval
+
+## Mathematically equivalent.
+
+# Type I and Type II errors
+
+## Definition
+
+## Calculation
+
+# Power
+
+## Definition
+
+## Calculation

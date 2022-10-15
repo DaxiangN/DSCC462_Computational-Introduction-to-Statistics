@@ -76,8 +76,25 @@ sd(c)
 
 $n=\left\lceil\frac{z_{\alpha / 2}^2 \cdot \sigma^2}{m^2}\right\rceil$
 
-# 这里的以前雨我无瓜
+# Normal Distribution Curve with ggplot 正态分布曲线
 
-**这里的以前雨我无瓜**
+```{r}
+library(tidyverse)
+f <- function(x, mu, sigma) {
+return(1/(sqrt(2 *pi) * sigma) * exp(-0.5 * ((x - mu)/sigma)^2))
+}
 
-这里的以前雨我无瓜
+base <- ggplot() + xlim(-10, 10)
+base + 
+      geom_function(aes(colour = "mu = 0, sigma = 3"), fun = f, args = list(mu = 0, sigma = 3), size = 2, linetype = "longdash")
+```
+
+# t distribution curve with ggplot T 分布曲线
+```{r}
+base <- ggplot() + xlim(-10, 10)
+base + 
+      geom_function(aes(colour = "df = 5"), fun = dt, args = list(df=5)) +
+      geom_function(aes(colour = "df = 20"), fun = dt, args = list(df=20)) +
+      geom_function(aes(colour = "df = 500"), fun = dt, args = list(df=500)) 
+```
+
