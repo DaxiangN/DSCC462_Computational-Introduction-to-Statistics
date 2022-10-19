@@ -38,7 +38,6 @@ f <- function(x,N) {
 a <- f(10,1)
 b <- f(100,1)
 c <- f(1000,1)
-
 ```
 
 ```{r}
@@ -90,6 +89,7 @@ base +
 ```
 
 # t distribution curve with ggplot T 分布曲线
+
 ```{r}
 base <- ggplot() + xlim(-10, 10)
 base + 

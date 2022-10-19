@@ -3,14 +3,14 @@ title: "Chaper 5 - Distributions"
 author: "Daxiang Na"
 date: "2022-10-03"
 output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
   pdf_document: 
     latex_engine: xelatex
     fig_caption: yes
     number_sections: no
     toc: yes
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
   html_document:
     df_print: paged
     toc: yes
@@ -243,13 +243,13 @@ curve(f, from = 0, to = 50)
 4.  Mean = median = mode = $\mu$, variance = $\sigma^2$, standard deviation = $\sigma$
 
 ```{r, fig.width=5, fig.height=4}
-sigma = 1
-mu = -5
+sigma <- 1
+mu <- -5
 f <- function(x) {
-return(1/(sqrt(2 *pi) * sigma) * exp(-0.5 * ((x - mu)/sigma)^2))
+return(1 / (sqrt(2 * pi) * sigma) * exp(-0.5 * ((x - mu) / sigma)^2))
 }
 curve(f, from = -10, to = 0)
-title(main = "PDF of normal distribution",sub = "sigma = 1, mu = -5")
+title(main = "PDF of normal distribution", sub = "sigma = 1, mu = -5")
 ```
 
 5.  When $\mu = 0$ and $\sigma^2 =1$, we have the standard normal distribution.
