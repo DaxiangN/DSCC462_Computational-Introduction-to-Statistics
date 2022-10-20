@@ -194,9 +194,6 @@ Theoretical probability distributions describe what we expect to happen hased on
 
 $$
 
-
-$$
-
    f_X(x)=
    \begin{cases}\frac{1}{b-a}, & x \in[a, b]
    \\ 0, & \text { otherwise }
@@ -204,12 +201,9 @@ $$
 
 $$
 
-
-$$
-
-2. Why $f(x) = \frac {1} {b - a}$? Because only by that $\int^b_a f(x)dx = 1$
-3. Notation: $X \sim Unif(a,b)$
-4. $\mu = \frac {a+b} {2}$, $\sigma = \frac {(b-a)^2} {12}$
+1. Why $f(x) = \frac {1} {b - a}$? Because only by that $\int^b_a f(x)dx = 1$
+2. Notation: $X \sim Unif(a,b)$
+3. $\mu = \frac {a+b} {2}$, $\sigma = \frac {(b-a)^2} {12}$
 
 ## 2.7. Exponential Distribution (Continuous)
 
