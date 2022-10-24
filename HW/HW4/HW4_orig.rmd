@@ -1,0 +1,74 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+---
+title: "DSCC/CSC/STAT 462 Assignment 4"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+subtitle: Due November 3, 2022 by 11:59 p.m.
+fontsize: 12pt
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
+```
+  
+\vspace{5pt}
+Please complete this assignment using `RMarkdown`, and submit the knitted PDF. *For all hypothesis tests, state the hypotheses, report the test statistic and p-value, and comment on the results in the context of the problem.* 
+\vspace{5pt}
+
+1. Recall the "airbnb.csv" dataset from HW3. Data collected on $n=83$ Air BnB listings in New York City are contained in the file "airbnb.csv." Read this file into R and, just as in HW3, create two new variables, one for the price of full house rentals and one for the price of private room rentals. (It may be useful to revisit some of your code from that assignment.)
+    a. At the $\alpha=0.05$ level, test "by-hand" (i.e. do not use any `.test()` function, but still use `R`) whether the variance of price of entire home rentals is significantly different from the variance of price of private home rentals. 
+    b. At the $\alpha=0.05$ level, test "by-hand" (i.e. do not use any `.test()` function, but still use `R`) whether the variance of price of private room rentals is significantly different from $40^2$. 
+\vspace{10pt}
+
+2. A gaming store is interested in exploring the gaming trends of teenagers. A random sample of $143$ teenagers is taken. From this sample, the gaming store observes that 95 teenagers play videos games regularly. For all parts of this problem, do the calculation "by-hand" (i.e. do not use the `prop.test()` or `binom.test()` functions, but still use `R`).
+    a. Construct a two-sided (Wald) 95% confidence interval for the proportion of all teenagers who play video games regularly. Interpret the interval.
+    b. A teen magazine advertises that "74% of teenagers play video game regularly," and you want to see if this claim is true. Perform a hypothesis test at the $\alpha=0.05$ significance level to test whether this claim is correct.
+    c. Comment on how comparable the results are from the confidence interval and the hypothesis test in examining the teen magazine's claim. Explain. 
+\vspace{10pt}
+    
+3. Researchers at a Las Vegas casino want to determine what proportion of its visitors smoke while in the casino. Casino executives are planning to conduct a survey, and they are willing to have a margin of error of 0.07 in estimating the true proportion of visitors who  smoke. If the executives want to create a two-sided (Wald) 99\% confidence interval, how many visitors must be included in the study?
+\vspace{10pt}
+
+4. Are people in Australia more likely to have pets than people in America? Of a sample of 51 Australians, 32 indicated having a pet. In an independent sample of 63 Americans, 27 indicated having a pet. Test "by-hand" (i.e. do not use the `prop.test()` or `binom.test()` functions, but still use `R`) at the $\alpha=0.05$ significance level whether the proportion of Australians who have pets is greater than the proportion of Americans who have pets.
+\vspace{10pt}
+
+5. Researchers are interested in exploring severity of COVID-19 symptoms by age group. A sample of 193 patients at a health clinic were asked their age and have their symptoms categorized as "asymptomatic," "moderate," or "severe." The results are presented in the table below. Conduct an appropriate test (you do not need to do this test "by-hand" and can use the `chisq.test()` function) at the $\alpha=0.01$ significance level to determine whether severity of COVID-19 symptoms is associated with age. 
+\begin{tabular}{c|ccc|c}
+  \hline
+Age (years) & Asymptomatic & Moderate & Severe & Total\\
+   \hline
+$[0,18)$ & 22 & 13 & 7 &  42\\
+$[18,55)$ & 36 & 22 & 28 & 86 \\
+$55$ and older & 10 & 29 & 26 & 65\\
+   \hline  
+   Total &68 & 64 & 61 & 193\\
+\end{tabular}
+\vspace{10pt}
+
+6. A study was conducted to investigate the respiratory effects of sulphur dioxide in subjects with asthma. During the study, two measurements were taken on each subject. First, investigators measured the increase in specific airway resistance (SAR)---a measure of broncho-constriction---from the time when the individual is at rest until after he/she has been exercising for 5 minutes (variable: `air`). The second measurement is the increase in SAR for the same subject after he/she has undergone a similar 5 minute exercise conducted in an atmosphere of 0.25 ppm sulfur dioxide (variable: `sulf.diox`). Ultimately, we are interested in examining the `air-sulf.diox` difference. For the 17 subjects enrolled in the study, the two measurements are presented in dataset "asthma.csv" on Blackboard. 
+    a.  At the $\alpha=0.01$ significance level, use a Wilcox signed-rank test "by-hand" (i.e. do not use the `wilcox.test()` function, but still use `R`) to test the null hypothesis that the median difference in increase in SAR for the two air conditions is equal to 0 against the two-sided alternative hypothesis that it is not equal to 0. What do you conclude? Perform this test using a normal distribution approximation.
+    b. Run the test again using the exact signed-ranked distribution (i.e., `wilcox.test()`). How does the p-value differ from the result in part b?
+    \vspace{10pt}
+    
+7. The data in the file "bulimia.csv" are taken from a study that compares adolescents who have bulimia to healthy adolescents with similar body compositions and levels of physical activity. The data consist of measures of daily caloric intake for random samples of 23 bulimic adolescents and 15 healthy adolescents. 
+    a. Read the data into R. To do so, use code such as this:
+    ```{r, eval=F}
+    bulimia <- read.csv("bulimia.csv")
+    bulimic <- bulimia$bulimic
+    healthy <- bulimia$health[1:15]
+    ```
+    b. Test the null hypothesis that the median daily caloric intake of the population of individuals suffering from bulimia is equal to the median caloric intake of the healthy population. Conduct a two-sided test at the $\alpha=0.01$ significance level (you do not need to do this test "by hand"; i.e., you may use a `.test()` function). Use a normal approximation for the distribution of the test statistic. 
+  
+    
+Short Answers:
+
+  * About how long did this assignment take you? Did you feel it was too long, too short, or reasonable? 
+  
+  * Who, if anyone, did you work with on this assignment?
+  
+  * What questions do you have relating to any of the material we have covered so far in class?  
