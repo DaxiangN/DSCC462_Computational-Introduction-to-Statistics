@@ -1,0 +1,41 @@
+---
+title: "Chapter 9 Inference for Variances"
+author: "Daxiang Na (那达翔)"
+date: "2022-10-23"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+```
+
+# Inference for Variances
+
+# Sampling Distribution of Variance
+
+# Chi-squared $\chi^2$ distribution
+
+# Hypothesis Tests for One Population Variance
+
+## Concept
+
+## Calculation
+
+## Confidence Intervals for One Population Variance
+
+# Hypothesis Tests for Two Population Variances
+

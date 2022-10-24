@@ -1,8 +1,8 @@
 ---
 title: "Chaper 6 - Confidence Intervals"
-author: "Daxiang Na"
+author: "Daxiang Na（那达翔）"
 date: "2022-10-06"
-CJKmainfont: Songti SC
+CJKmainfont: STKaiti
 output: 
   pdf_document: 
     includes:
@@ -20,81 +20,52 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
 ```
 
-\
 
-Q1: For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference?
+Q1: For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference? Another way to ask this question: if we sample for 20 times ($m = 20$), but each time with sample size $n = 100$, does that follow CLT?
 
 # CLT and Sampling Distribution
 
-```{r}
-f <- function(x,N) {
-  df <- replicate(N, rexp(x, 2))
-  a <- df[,1]
-  return(a)
-}
 
-a <- f(10,1)
-b <- f(100,1)
-c <- f(1000,1)
-```
-
-```{r}
-set.seed(42)
-library(dplyr)
-f <- function(x) {
-  N <- 30
-  df <- as.data.frame(replicate(N, rexp(x, 2))) %>% 
-    summarise_if(is.numeric, mean)
-  a <- as.numeric(as.vector(df[1,]))
-  return(a)
-}
-a <- f(10)
-mean(a)
-sd(a)
-0.5/sqrt(10)
-
-b <- f(20)
-mean(b)
-sd(b)
-0.5/sqrt(20)
-
-d <- f(30)
-mean(d)
-sd(d)
-0.5/sqrt(30)
-
-c <- rexp(100, 2)
-mean(c)
-sd(c)
-0.5/sqrt(1)
-```
 
 # Margin of Error and Sample Size
 
-$n=\left\lceil\frac{z_{\alpha / 2}^2 \cdot \sigma^2}{m^2}\right\rceil$
+Estimated sample size needed when confidence interval (CI) is given:
+
+$$n=\left\lceil\frac{z_{\alpha / 2}^2 \cdot \sigma^2}{m^2}\right\rceil$$
 
 # Normal Distribution Curve with ggplot 正态分布曲线
 
-```{r}
-library(tidyverse)
+```{r, echo=FALSE, fig.width=5, fig.height=3, fig.align='center'}
 f <- function(x, mu, sigma) {
 return(1/(sqrt(2 *pi) * sigma) * exp(-0.5 * ((x - mu)/sigma)^2))
 }
 
 base <- ggplot() + xlim(-10, 10)
 base + 
-      geom_function(aes(colour = "mu = 0, sigma = 3"), fun = f, args = list(mu = 0, sigma = 3), size = 2, linetype = "longdash")
+      geom_function(aes(colour = "mu = 0, sigma = 3"), fun = f, args = list(mu = 0, sigma = 3), size = 1, linetype = "longdash")
 ```
 
-# t distribution curve with ggplot T 分布曲线
+# T distribution T分布
 
-```{r}
-base <- ggplot() + xlim(-10, 10)
+When $\sigma^2$ is also unknown, we substitute the sample variance $s^2$ and use the t distribution instead of the normal distribution.
+
+$$
+t=\frac{\bar{x}-\mu_{0}}{{s}/{\sqrt{n}}}
+$$
+
+t distribution curve with ggplot, T分布曲线
+
+```{r, echo=FALSE, fig.width=5, fig.height=3, fig.align='center'}
+base <- ggplot() + xlim(-5, 5)
 base + 
       geom_function(aes(colour = "df = 5"), fun = dt, args = list(df=5)) +
       geom_function(aes(colour = "df = 20"), fun = dt, args = list(df=20)) +
       geom_function(aes(colour = "df = 500"), fun = dt, args = list(df=500)) 
 ```
 
+This t-statistic has a t distribution with n − 1 degrees of freedom
+
+![](t_distribution_hypothesis.png){width="500"}

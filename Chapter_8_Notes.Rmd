@@ -1,0 +1,50 @@
+---
+title: "Chapter 8 Hypothesis Testing with Two Samples"
+author: "Daxiang Na (那达翔)"
+date: "2022-10-23"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+```
+
+# Questions
+
+## What is the sample size requirement for t tests?
+
+# Comparison of Two Means
+
+# Paired Samples
+
+## Definition
+
+## Example
+
+## Confidence Intervals
+
+## R Code
+
+## One-sided Paired t-test Example
+
+# Independent Samples
+
+## Equal, Known Variances
+
+## Equal, Unknown Variances
+
+## Unequal Variance (Welch t-test)
