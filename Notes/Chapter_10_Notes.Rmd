@@ -1,0 +1,58 @@
+---
+title: "Chapter 10 Chi-square Tests"
+author: "Daxiang Na"
+date: "2022-10-25"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+library(knitr)
+```
+
+# Outline
+
+-   Goodness-of-Fit Test
+
+    -   true proportion = expected proportion ?
+
+    -   generalization of proportion hypothesis tests
+
+# Goodness of fit test
+
+- multi-category proportions
+
+- test 
+
+# Chi-square test of independence
+
+```{r}
+###Create a matrix named "mat" with 9 rows & 5 columns
+mat <- matrix(c(50, 82, 127, 91), nrow = 2, ncol = 2)
+
+### Set row names and column names
+rownames(mat) <- c("V1 Yes", "V1 No")
+colnames(mat) <- c("V2 Yes", "V2 No")
+
+### Create a table
+kable(x=mat, digits=2,row.names=T, format = "markdown")
+```
+
+```{r}
+chisq.test(mat, correct = F)
+```
+
