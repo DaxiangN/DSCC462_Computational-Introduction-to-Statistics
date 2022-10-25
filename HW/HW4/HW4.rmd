@@ -14,6 +14,8 @@ fontsize: 12pt
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
+library(tidyverse)
+source("/Users/daxiangna/R_functions/hist_plot.R")
 ```
   
 \vspace{5pt}
@@ -21,7 +23,15 @@ Please complete this assignment using `RMarkdown`, and submit the knitted PDF. *
 \vspace{5pt}
 
 1. Recall the "airbnb.csv" dataset from HW3. Data collected on $n=83$ Air BnB listings in New York City are contained in the file "airbnb.csv." Read this file into R and, just as in HW3, create two new variables, one for the price of full house rentals and one for the price of private room rentals. (It may be useful to revisit some of your code from that assignment.)
+    
     a. At the $\alpha=0.05$ level, test "by-hand" (i.e. do not use any `.test()` function, but still use `R`) whether the variance of price of entire home rentals is significantly different from the variance of price of private home rentals. 
+    
+    ```{r}
+    df <- read.csv("airbnb(1).csv")
+    hist_plot(df)
+    ```
+    
+    
     b. At the $\alpha=0.05$ level, test "by-hand" (i.e. do not use any `.test()` function, but still use `R`) whether the variance of price of private room rentals is significantly different from $40^2$. 
 \vspace{10pt}
 
