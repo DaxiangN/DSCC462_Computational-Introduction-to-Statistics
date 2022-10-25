@@ -25,7 +25,17 @@ library(tidyverse)
 
 # Inference for Variances
 
+1.   variances are essential to inference of means
+2.   for inference for variance, we will be interested in determining:
+    -   whether a population variance is equal to a predetermined value
+    -   whether two population variances are equal
+
 # Sampling Distribution of Variance
+
+1. sample variance: $s^2=\frac{1}{n-1} \cdot \sum_{i=1}^n\left(x_i-\bar{x}\right)^2$
+
+
+
 
 # Chi-squared $\chi^2$ distribution
 
@@ -38,4 +48,3 @@ library(tidyverse)
 ## Confidence Intervals for One Population Variance
 
 # Hypothesis Tests for Two Population Variances
-
