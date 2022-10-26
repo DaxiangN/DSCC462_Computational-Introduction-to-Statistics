@@ -33,8 +33,11 @@ library(knitr)
 
 # Sampling Distribution of Variance
 
+## Deduction
+
 1. sample variance: $s^2=\frac{1}{n-1} \cdot \sum_{i=1}^n\left(x_i-\bar{x}\right)^2$
 
+2. 
 
 
 
