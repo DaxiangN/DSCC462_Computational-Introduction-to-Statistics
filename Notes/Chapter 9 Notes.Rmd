@@ -21,6 +21,7 @@ fontsize: 12pt
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
 library(tidyverse)
+library(knitr)
 ```
 
 # Inference for Variances

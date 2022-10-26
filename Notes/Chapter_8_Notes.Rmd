@@ -29,11 +29,36 @@ library(tidyverse)
 
 # Comparison of Two Means
 
+-   in Chapter 7, we talked about hypothesis test to compare the unknown mean of a single population to some fixed, known value, $\mu_{0}$
+
+-   Often, we want to compare the means of two separate populations, where *both* means are unknown
+
+-   \textcolor{red}{First step: determine whether the two samples are paired or independent.}
+
 # Paired Samples
 
 ## Definition
 
-## Example
+-   for each observation in the first group, there is a corresponding observation in the second group
+
+    -   Self-pairing: measurements are taken on a single subject at two distinct time points (before and after)
+    -   Matched pairing: match two individuals with similar demographics/characteristics and compare their differences in response
+
+## Procedure
+
+### Parameters
+
+- data: use the differences $d_{i} = b_{i} - a_{i}$ as the data
+
+- Mean: the average of $d_{i}$ = $\bar{x}_{d}$
+
+- Sample standard deviation of $d_{i}$ = $s_{d}$
+
+- Standard error: $s_{d}/\sqrt{n}$
+
+- Assumption: $\bar{x}_d \sim N\left(\mu_d, \sigma_d / \sqrt{n}\right)$
+
+###
 
 ## Confidence Intervals
 
