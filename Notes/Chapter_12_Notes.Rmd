@@ -1,0 +1,88 @@
+---
+title: "Chapter 12 Non-parametric Test"
+author: "Daxiang Na"
+date: "2022-10-25"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+# Wilcoxon Signed Rank Test
+
+-   Only for paired sample.
+
+-   Evaluate the null hypothesis: $Z_{T} = (T - \mu_{T})/\sigma_{T}$
+
+-   Note: $$
+    \begin{aligned}
+    &\mu_T=0 \\
+    &\sigma_T=\sqrt{\frac{n(n+1)(2 n+1)}{6}}
+    \end{aligned}
+    $$
+
+-   $$
+    Z_T \sim N(0,1)
+    $$
+
+-   usually $n > 12$
+
+-   calculate the probability of getting $Z_{T}$ when $\mu = 0$ is true.
+
+-   For two-sided test, follow what we do in the sampling distribution:
+
+    -   2\*p when z \< 0
+
+    -   2\*(1 - p) when z \> 0
+
+-   if n \>= 30, you can just apply CLT, otherwise you can use this.
+
+-   in R: `psignrank(T,n)`
+
+-   `wilcox.test(before, after, paired = T, exact = F, correct = F)`
+
+-   
+
+# Wilcoxon Rank-Sum test (also known as Mann-Whitney U test)
+
+-   nonparametric analog to the two-sample t-test
+
+-   get $W_{1}$ and $W_{2}$
+
+-   W = min($W_{1}$, $W_{2}$)
+
+-   $$
+    z_W=\frac{W-\mu_W}{\sigma_W}
+    $$
+
+-   n1 = sample size with the smaller sum of ranks
+
+-   n2 = sample size with the larger sum of ranks
+
+-   $$
+    \mu_W=\frac{n_1\left(n_1+n_2+1\right)}{2} \text { and } \sigma_W=\sqrt{\frac{n_1 n_2\left(n_1+n_2+1\right)}{12}}
+    $$
+
+-   $z_W$ \~ N(0, 1) when n1 and n2 are large enough (n1, n2 \> 10).
+
+-   in R: `pwilcox(Wobs, n1, n2)`
+
+    -   in this case, Wobs = W - n1(n1 + 1)/2
+
+-   in R: `wilcox.test(..., exact = F, correct = F, paired = F, alt = "")`
+
+-   when n is small, use exact distribution to calculate p-values
+
+-   correct: correct the data with continuity correction
+
+-   exact: F: normal distribution, T - wilcoxon.
