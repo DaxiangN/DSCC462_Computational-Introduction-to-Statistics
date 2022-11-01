@@ -18,6 +18,26 @@ output:
 fontsize: 12pt
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+library(knitr)
+```
+
+# Questions:
+
+## What is $V$ in the returned result of `wilcox.test`
+
+\
+
+## What is the definition of T in `psignrank`?
+
+In the `psignrank` document(<https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/SignRank>), the the Wilcoxon signed rank statistic is " the sum of the ranks of the absolute values x[i] for which x[i] is positive". I am wondering if $T = T^+$ instead of $T = min(T^+, T^-)$? This appears to be correct when solving the example problem, where `2*(1 - psignrank(75.5,n=14))` = 0.135 but `2*psignrank(29.5,n=14)` != 0.135
+
+I therefore wonder if $T = T^+$ should be the definition of `psignrank` in R.
+
+[Another question regarding this topic]{.underline}: when testing the two-tailed hypothesis, when should we use `2*(1 - psignrank(T,n))` and `2*psignrank(T, n)`? i.e. what is the mean for the wilcoxon signed rank distribution? Is it $n(n + 1)/4$ as stated in the document?
+
 # Wilcoxon Signed Rank Test
 
 -   Only for paired sample.
@@ -31,11 +51,9 @@ fontsize: 12pt
     \end{aligned}
     $$
 
--   $$
+-   When n is large enough ($n > 12$), we get$$
     Z_T \sim N(0,1)
     $$
-
--   usually $n > 12$
 
 -   calculate the probability of getting $Z_{T}$ when $\mu = 0$ is true.
 
@@ -45,13 +63,11 @@ fontsize: 12pt
 
     -   2\*(1 - p) when z \> 0
 
--   if n \>= 30, you can just apply CLT, otherwise you can use this.
+-   if $n > 12$ , you can just apply CLT, the R code is: `wilcox.test(before, after, paired = T, exact = F, correct = F)`. `exact =` determines if the statistics follow normal distribution (`exact = F`) or exact distribution (`exact = T`).
 
--   in R: `psignrank(T,n)`
+-   If $n \le 12$, we cannot use the normal approximation. In that case, we use `psignrank(T,n)` in R to calculate the exact distribution.
 
--   `wilcox.test(before, after, paired = T, exact = F, correct = F)`
-
--   
+    -   \textcolor{red}{R requires $T = min(T^+, T^-)$ for this to work correctly!}
 
 # Wilcoxon Rank-Sum test (also known as Mann-Whitney U test)
 
@@ -59,30 +75,27 @@ fontsize: 12pt
 
 -   get $W_{1}$ and $W_{2}$
 
--   W = min($W_{1}$, $W_{2}$)
+-   $W = min(W_1, W_2)$
 
--   $$
-    z_W=\frac{W-\mu_W}{\sigma_W}
-    $$
+-   $n_1$ = sample size with the [smaller]{.underline} sum of ranks.
 
--   n1 = sample size with the smaller sum of ranks
-
--   n2 = sample size with the larger sum of ranks
+-   $n_2$ = sample size with the [larger]{.underline} sum of ranks.
 
 -   $$
     \mu_W=\frac{n_1\left(n_1+n_2+1\right)}{2} \text { and } \sigma_W=\sqrt{\frac{n_1 n_2\left(n_1+n_2+1\right)}{12}}
     $$
 
--   $z_W$ \~ N(0, 1) when n1 and n2 are large enough (n1, n2 \> 10).
+-   $$
+    z_W=\frac{W-\mu_W}{\sigma_W}
+    $$
 
--   in R: `pwilcox(Wobs, n1, n2)`
+-   $z_W \sim N(0, 1)$ when $n_1$ and $n_2$ are large enough (n1, n2 \> 10).
 
-    -   in this case, Wobs = W - n1(n1 + 1)/2
+    -   in R: `wilcox.test(..., exact = F, correct = F, paired = F, alt = "")`
 
--   in R: `wilcox.test(..., exact = F, correct = F, paired = F, alt = "")`
+-   When $n_1$ and $n_2$ are very small (i.e. [either is less than or equal to 10]{.underline}), we can use the exact distribution to calculate the p-values. In R: `pwilcox(Wobs, n1, n2)`
 
--   when n is small, use exact distribution to calculate p-values
+    -   in this case, $W_{obs} = W - n_1(n_1 + 1)/2$
+    -   `wilcox.test` also works when `exact = T`
 
 -   correct: correct the data with continuity correction
-
--   exact: F: normal distribution, T - wilcoxon.

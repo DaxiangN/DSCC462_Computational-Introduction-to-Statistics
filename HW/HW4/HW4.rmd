@@ -9,6 +9,7 @@ editor_options:
 
 ---
 title: "DSCC/CSC/STAT 462 Assignment 4"
+author: Daxiang Na
 output:
   pdf_document: default
   html_document:
@@ -226,10 +227,37 @@ Please complete this assignment using `RMarkdown`, and submit the knitted PDF.
     rm(list = ls())
     data <- read.csv("asthma.csv")
     
+    # Calculate the difference of Before - After, but not After - Before
+    
+    data <- data %>% 
+      mutate(difference = air - sulf.diox, abs = abs(difference)) %>% 
+      arrange(abs) %>% 
+      mutate(index = if_else(difference > 0, row_number(), -row_number()))
+    
+    # T = T+ - T-
+    
+    t <- abs(sum(data[data$index > 0, 'index'])) - abs(sum(data[data$index < 0, 'index']))
+    n <- nrow(data)
+    sigma <- sqrt(n*(n + 1)*(2*n + 1)/6)
+    t
+    n
+    sigma
+    z <- (t - 0)/sigma
+    z
+    p <- 2*pnorm(z)
+    p
     ```
     
+    Answer: T = -111, n = 17 > 12 therefore $Z \sim N(0, 1)$, $\sigma = 42.24926$, $z = -2.627265$, $p = 0.008607429 < \alpha = 0.01$. Therefore we reject the null hypothesis and conclude that the median difference in increase in SAR for the two air conditions is significantly different from 0.
     
     b.  Run the test again using the exact signed-ranked distribution (i.e., `wilcox.test()`). How does the p-value differ from the result in part b? \vspace{10pt}
+    
+    ```{r}
+    p_alt <- wilcox.test(data$air, data$sulf.diox, paired = T, exact = T)
+    p_alt
+    ```
+    
+    Answer: the p-value is higher when using the exact signed-ranked distribution.
 
 7.  The data in the file "bulimia.csv" are taken from a study that compares adolescents who have bulimia to healthy adolescents with similar body compositions and levels of physical activity.
     The data consist of measures of daily caloric intake for random samples of 23 bulimic adolescents and 15 healthy adolescents.
@@ -244,12 +272,24 @@ Please complete this assignment using `RMarkdown`, and submit the knitted PDF.
     ```
 
     b.  Test the null hypothesis that the median daily caloric intake of the population of individuals suffering from bulimia is equal to the median caloric intake of the healthy population. Conduct a two-sided test at the $\alpha=0.01$ significance level (you do not need to do this test "by hand"; i.e., you may use a `.test()` function). Use a normal approximation for the distribution of the test statistic.
+    
+    ```{r}
+    wilcox.test(bulimic, healthy, paired = F, exact = F, alternative = 'two.sided')
+    ```
+    
+    Answer: p-value = 0.0006262 < alpha = 0.01, we reject the null hypothesis and conclude that the median daily caloric intake of the population of individuals suffering from bulimia is significantly different from the median caloric intake of the healthy population.
 
 Short Answers:
 
 -   About how long did this assignment take you?
     Did you feel it was too long, too short, or reasonable?
+    
+    About 8 hours including reviewing lectures.
 
 -   Who, if anyone, did you work with on this assignment?
 
+    Discussed with classmates.
+
 -   What questions do you have relating to any of the material we have covered so far in class?
+
+    No question for now.
