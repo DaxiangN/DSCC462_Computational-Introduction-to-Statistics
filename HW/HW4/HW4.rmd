@@ -274,7 +274,7 @@ Please complete this assignment using `RMarkdown`, and submit the knitted PDF.
     b.  Test the null hypothesis that the median daily caloric intake of the population of individuals suffering from bulimia is equal to the median caloric intake of the healthy population. Conduct a two-sided test at the $\alpha=0.01$ significance level (you do not need to do this test "by hand"; i.e., you may use a `.test()` function). Use a normal approximation for the distribution of the test statistic.
     
     ```{r}
-    wilcox.test(bulimic, healthy, paired = F, exact = F, alternative = 'two.sided')
+    wilcox.test(bulimic, healthy, correct = F, paired = F, exact = F, alternative = 'two.sided')
     ```
     
     Answer: p-value = 0.0006262 < alpha = 0.01, we reject the null hypothesis and conclude that the median daily caloric intake of the population of individuals suffering from bulimia is significantly different from the median caloric intake of the healthy population.
