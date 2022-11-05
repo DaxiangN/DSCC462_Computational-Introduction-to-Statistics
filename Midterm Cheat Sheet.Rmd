@@ -64,4 +64,4 @@ Case QQ: Quantitative and Quantitative
 
 # Three Variables
 
-add color as the third dimention
+add color as the third dimension
