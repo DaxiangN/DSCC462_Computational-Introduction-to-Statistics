@@ -24,18 +24,44 @@ library(tidyverse)
 library(knitr)
 ```
 
-# Distribution parameters
+# Type I and Type II Error, calculating power:
 
-| Distribution                          | Notation         | PDF/PMF                             | CDF | Mean | Sigma |
-|------------------|-------------|-------------------------|-----------|-----------|-----------|
-| Bernoulli distribution                | $Y \sim Bern(p)$ | $E(Y) = 1\cdot p + 0\cdot(1-p) = p$ |     |      |       |
-| Binomial distribution                 |                  |                                     |     |      |       |
-| Poisson distribution                  |                  |                                     |     |      |       |
-| Geometric distribution                |                  |                                     |     |      |       |
-| Uniform distribution                  |                  |                                     |     |      |       |
-| Exponential distribution              |                  |                                     |     |      |       |
-| Normal distribution                   |                  |                                     |     |      |       |
-| Sampling Distribution                 |                  |                                     |     |      |       |
-| Sampling Distribution of a proportion |                  |                                     |     |      |       |
+![](graphical-representation-of-type-1-and-type-2-errors.png){width="500"}
 
-: Distribution Parameters
+# Skewness
+
+Left (negative) skew: The left tail extends farther out than the right tail Right (positive skew): The right tail extends farther out than the left tail
+
+# Quantiles
+
+## Percentiles and quartiles
+
+The p sample quantile is the value below which a proportion p of the data are located.
+
+E.g., if your birth weight is at the 95th percentile, then you weighed more than 0.95 of all newborn babies.
+
+IQR: Interquartile Range = Q3 - Q1
+
+1st quartile (Q1): 25th percentile, 2nd quartile (Q2): 50th percentile (median), 3rd quartile (Q3): 75th percentile.
+
+## Modified Boxplot
+
+An outlier is a data point that is either:
+
+-   Less than: Q1 − 1.5 × (Q3 − Q1) = lower fence of box
+-   Greater than: Q3 + 1.5 × (Q3 − Q1) = upper fence of boxplot
+-   Standard span: 1.5 × (Q3 − Q1) = 1.5 × IQR
+
+# Variance
+
+# Relationships Between Variables
+
+Case CQ: Categorical and Quantitative
+
+Case CC: Categorical and Categorical
+
+Case QQ: Quantitative and Quantitative
+
+# Three Variables
+
+add color as the third dimention
