@@ -19,7 +19,7 @@ fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+knitr::opts_chunk$set(echo = T, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
 library(tidyverse)
 library(knitr)
 ```
@@ -75,3 +75,42 @@ If a distribution is symmetric, unimodal, and bell-shaped (i.e., normally distri
 -   Approximately 95% of observations fall within two SDs of the mean: x ± 2s, or (x − 2s, x + 2s)
 
 -   Approximately 99.7% of observations fall within three SDs of the mean: x ± 3s, or (x − 3s, x + 3s)
+
+# Transformation:
+
+## Box-Cox Power Transformation
+
+$$
+y_\lambda= \begin{cases}\frac{x^\lambda-1}{\lambda}, & \lambda \neq 0 \\ \log (x), & \lambda=0\end{cases}
+$$
+R code:
+
+    ```{r, echo = T, eval = F}
+    library(MASS)
+    bc1 <- boxcox(x~1) 
+    bc1$x[bc1$y==max(bc1$y)]
+    ```
+
+    ```{r, echo = T, eval = F}
+    # Example code from assignment
+    library(MASS)
+    bc1 <- boxcox(df$price~1)
+    lambda <- bc1$x[bc1$y==max(bc1$y)]
+    trans <- (df$price ** lambda - 1) / lambda
+    summary(trans)
+    ```
+    
+    
+## For right skewed data, use a function that tends to reduce larger values in proportion to smaller ones (i.e., an increasing function whose slope is decreasing):
+
+### Log transformation:
+
+in R: `log()`
+
+### Square-root transformation:
+
+in R: `sqrt`
+
+# Check normality: qqplot
+
+in R: `qqnorm(data); qqline(data)`
