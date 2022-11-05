@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  5 NOV 2022 13:51
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  5 NOV 2022 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -810,30 +810,51 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `TU/STKaiti(0)/m/n' will be
 (Font)              scaled to size 13.91571pt on input line 82.
-(./Midterm-Cheat-Sheet.toc)
+(./Midterm-Cheat-Sheet.toc
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 8.4pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 12.0011pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 8.40076pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 11.99872pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 8.3991pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 4.
+)
 \tf@toc=\write4
 \openout4 = `Midterm-Cheat-Sheet.toc'.
 
 File: graphical-representation-of-type-1-and-type-2-errors.png Graphic file (type bmp)
 <graphical-representation-of-type-1-and-type-2-errors.png>
-File: 250474.image0.jpg Graphic file (type bmp)
-<250474.image0.jpg>
 [1
 
-]
-File: 250463.image0.jpg Graphic file (type bmp)
-<250463.image0.jpg>
-[2] [3] (./Midterm-Cheat-Sheet.aux)
+] [2]
+
+Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
+(xeCJK)                
+(xeCJK)                Try to use `\setCJKmonofont[<...>]{<...>}' to define
+(xeCJK)                it.
+
+LaTeX Font Info:    Font shape `TU/STKaiti(0)/m/n' will be
+(Font)              scaled to size 11.59644pt on input line 179.
+[3] [4] (./Midterm-Cheat-Sheet.aux)
 Package rerunfilecheck Info: File `Midterm-Cheat-Sheet.out' has not changed.
-(rerunfilecheck)             Checksum: AF3718D3217F17FC30F34BF67D04A47C;392.
+(rerunfilecheck)             Checksum: 55BA96E40FCFBB0DD37E1A0678ED058C;2734.
  ) 
 Here is how much of TeX's memory you used:
- 19797 strings out of 477643
- 388731 string characters out of 5840129
- 893191 words of memory out of 5000000
- 40705 multiletter control sequences out of 15000+600000
- 473413 words of font info for 63 fonts, out of 8000000 for 9000
+ 19863 strings out of 477643
+ 390758 string characters out of 5840129
+ 899931 words of memory out of 5000000
+ 40755 multiletter control sequences out of 15000+600000
+ 476278 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,6n,121p,1016b,344s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,7n,121p,1016b,889s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Midterm-Cheat-Sheet.pdf (3 pages).
+Output written on Midterm-Cheat-Sheet.pdf (4 pages).
