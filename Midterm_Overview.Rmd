@@ -1,0 +1,122 @@
+---
+title: "Midterm Overview"
+author: "Daxiang Na (那达翔)"
+date: "2022-11-01"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+library(knitr)
+```
+
+# Chapter 1: Statistical Data
+
+-   definition of variable types
+    -   categorical: nominal and ordinal
+    -   Quantitative: Interval and Ratio
+
+# Chapter 2: Descriptive Statistics and Displays
+
+-   Categorical:
+
+    -   Frequency Tables, bar charts
+
+-   Continuous:
+
+    -   Histograms, Sturges' formula
+
+    -   Boxplots, modified boxplots
+
+    -   Center: mean, trimeed mean, median, mode
+
+    -   Dispersion: quantiles, IQR, variance, standard deviation, coefficient of variantion, skewness
+
+    -   concentration: z-scores, empritical rule
+
+    -   Normality, quantile plots, linear transformations, Box-Cox transformation
+
+# Chapter 3: Relationships Between Variables
+
+-   CQ: side-by-side histograms or boxplots
+-   CC: two-way tables
+-   QQ: Scatterplot
+    -   Strength, direction, form, outliers
+
+    -   correlation(direction and correlation) and covariance(only tells directions, not frequently used when talking about correlation, but good concept for later study
+
+# Chapter 4: Probability and Combinatorics
+
+-   Probability:
+
+    -   intersection, union, complement of events
+
+-   Combinatorics:
+
+    -   Permutations (ordered)
+
+    -   product and sum rules
+
+    -   star and bars
+
+# Chapter 5: Distributions
+
+-   Discrete and continuous random variables:
+
+    -   PMFs. PDFs, CDFs, quantiles
+
+    -   Expacted value, linearity of expectation, variance, transformations
+
+    -   independence, covariance
+
+-   Distributions
+
+    -   for cheat sheet, the mean and variance for all of the distributions discussed
+
+    -   Discrete:...
+
+    -   Continuous:...
+
+    -   Sampling distributions, CLT
+
+    -   **Sampling Distribution of a Proportion** vs **Binomial**
+
+    -   ??? if X \~ Binom(n, p), sample for 50 times, X_bar \~ N(np, sqrt(p\*(1-p)/n)
+
+# Chapter 6: Confidence Intervals
+
+# Chapter 7: Hypothesis Tests
+
+-   One- and two-sided z- and t-tests CIs are the same here;
+
+-   rejection regions Type I and type II errors, power
+
+-   Sample size given α and β (one-sided and two-sided z- and t-tests)
+
+-   **Power curve**
+
+-   **Sample size estimation**
+
+# Chapter 8: Hypothesis Testing with Two Samples
+
+# Chapter 9: Inference for Variances
+
+# Chapter 10: Inference for Proportions
+
+# Chapter 11: Chi-squared Tests
+
+# Chapter 12: Nonparametric Tests

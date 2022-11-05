@@ -1,0 +1,41 @@
+---
+title: "Midterm Cheat Sheet"
+author: "Daxiang Na (那达翔)"
+date: "2022-11-01"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+library(knitr)
+```
+
+# Distribution parameters
+
+| Distribution                          | Notation         | PDF/PMF                             | CDF | Mean | Sigma |
+|------------------|-------------|-------------------------|-----------|-----------|-----------|
+| Bernoulli distribution                | $Y \sim Bern(p)$ | $E(Y) = 1\cdot p + 0\cdot(1-p) = p$ |     |      |       |
+| Binomial distribution                 |                  |                                     |     |      |       |
+| Poisson distribution                  |                  |                                     |     |      |       |
+| Geometric distribution                |                  |                                     |     |      |       |
+| Uniform distribution                  |                  |                                     |     |      |       |
+| Exponential distribution              |                  |                                     |     |      |       |
+| Normal distribution                   |                  |                                     |     |      |       |
+| Sampling Distribution                 |                  |                                     |     |      |       |
+| Sampling Distribution of a proportion |                  |                                     |     |      |       |
+
+: Distribution Parameters

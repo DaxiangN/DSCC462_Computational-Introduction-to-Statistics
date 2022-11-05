@@ -1,8 +1,8 @@
 ---
 title: "Chaper 5 - Distributions"
-author: "Daxiang Na"
+author: "Daxiang Na (那达翔)"
 date: "2022-10-03"
-CJKmainfont: Source Han Serif SC
+CJKmainfont: STKaiti
 output: 
   pdf_document: 
     includes:
@@ -216,7 +216,7 @@ curve(f, from = 0, to = 50)
 9.  **Why??** \textcolor{red}{CDF $P(X \le x) = 1 - (1-p)^{x}$ (1 minus the probability that the first $x$ trials all failed?)}
     -   A possible way to get it: probability that it takes more than $x$ time to get success: $P(X > x) = (1 - p)^{x}$, then CDF = $P(X \le x) = 1 - (1-p)^{x}$.
 
-## 2.6. Uniform Distribution (Continuous)
+## 2.6. Uniform Distribution 均匀分布 (Continuous)
 
 1.  PDF: $$
     f_X(x)= \begin{cases}\frac{1}{b-a} ,& x \in[a, b] 
@@ -226,14 +226,14 @@ curve(f, from = 0, to = 50)
 3.  Notation: $X \sim Unif(a,b)$
 4.  $\mu = \frac {a+b} {2}$, $\sigma = \frac {(b-a)^2} {12}$
 
-## 2.7. Exponential Distribution (Continuous)
+## 2.7. Exponential Distribution 指数分布 (Continuous)
 
 1.  PDF: $f_X(x) = \lambda e^{-\lambda x}$, $\lambda > 0$
 2.  Notation: $X \sim Exp(\lambda)$
 3.  $\mu = 1/ \lambda$, $\sigma^2 = 1/ \lambda^2$
 4.  CDF: $F_X(x) = 1 - e^{-\lambda x}$
 
-## 2.8. Normal Distribution (Continuous)
+## 2.8. Normal Distribution 正态分布 (Continuous)
 
 1.  The most common continuous distribution is the normal distribution (also called a Gaussian distribution or bell-shaped curve)
     -   Shape of the binomial distribution when $p$ is constant but $n → \infty$
@@ -266,7 +266,7 @@ title(main = "PDF of normal distribution",sub = "sigma = 1, mu = -5")
 10. ![](Screen%20Shot%202022-10-04%20at%201.03.35%20PM.png){width="500"}
 11. ![](Screen%20Shot%202022-10-04%20at%201.10.24%20PM.png){width="600"}
 
-## 2.9. Central Limit Theorem(CLT) and Sampling Distribution
+## 2.9. Central Limit Theorem 大数定理 (CLT) and Sampling Distribution
 
 1.  **Sampling distribution**: If $X \sim N(\mu, \sigma)$, then $\bar{X} \sim N\left(\mu, \frac{\sigma}{\sqrt{n}}\right)$
 2.  \textcolor{red}{Central Limit Theorem(CLT): If the population we are sampling from is not normal, then the shape of the distribution of $\overline{X}$ will be normal as long as $n$ is sufficiently large (typically $n \ge 30$ suffices).}

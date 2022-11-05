@@ -281,7 +281,7 @@ In order to run hypothesis tests and construct confidence intervals, you may fin
     n <- 5
     f <- function(x, n) {
       cutoff <- mu + qnorm(1-0.01)*s/sqrt(n)
-      y <- 1-(1-pnorm((x - cutoff)/(s/sqrt(n))))
+      y <- 1-(pnorm((cutoff - x)/(s/sqrt(n))))
       return(y)
     }
     plot(mu1, f(mu1, 5), type = "l", ylab = "Power", xlab = expression(mu[1]))
