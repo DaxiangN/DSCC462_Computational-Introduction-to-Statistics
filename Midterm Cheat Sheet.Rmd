@@ -65,3 +65,13 @@ Case QQ: Quantitative and Quantitative
 # Three Variables
 
 add color as the third dimension
+
+# Empirical Rule
+
+If a distribution is symmetric, unimodal, and bell-shaped (i.e., normally distributed), then the following hold:
+
+-   Approximately 68% of observations fall within one SD of the mean: x ± s, or (x − s, x + s)
+
+-   Approximately 95% of observations fall within two SDs of the mean: x ± 2s, or (x − 2s, x + 2s)
+
+-   Approximately 99.7% of observations fall within three SDs of the mean: x ± 3s, or (x − 3s, x + 3s)
