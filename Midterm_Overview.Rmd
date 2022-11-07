@@ -27,7 +27,7 @@ library(knitr)
 # Chapter 1: Statistical Data
 
 -   definition of variable types
-    -   categorical: nominal and ordinal
+    -   Categorical: nominal and ordinal
     -   Quantitative: Interval and Ratio
 
 # Chapter 2: Descriptive Statistics and Displays
