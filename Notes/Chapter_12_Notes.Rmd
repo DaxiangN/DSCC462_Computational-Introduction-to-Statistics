@@ -67,7 +67,7 @@ I therefore wonder if $T = T^+$ should be the definition of `psignrank` in R.
 
 -   If $n \le 12$, we cannot use the normal approximation. In that case, we use `psignrank(T,n)` in R to calculate the exact distribution.
 
-    -   \textcolor{red}{R requires $T = min(T^+, T^-)$ for this to work correctly!}
+    -   \textcolor{red}{R requires $T = T^+$ for this to work correctly!}
 
 # Wilcoxon Rank-Sum test (also known as Mann-Whitney U test)
 

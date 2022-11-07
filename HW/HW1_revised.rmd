@@ -17,7 +17,9 @@ knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=40
 library(ggplot2)
 car_sales <- read.csv("car_sales.csv")
 ```
-  
+
+**Feedback from TA: 1)a) comment about form,strength and direction is missing, 2) d) the test is effective as in case of disease False negative is important. 6) a) wrong**
+
 This assignment will cover material from Lectures 3, 4, and 5. 
 
 1. For the first part of this assignment, we will explore the relationships between variables using the same "car_sales.csv" dataset as HW0. In particular, we will explore the relationships between multiple variables. 

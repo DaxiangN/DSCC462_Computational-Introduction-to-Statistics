@@ -1,14 +1,14 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.10.31)  31 OCT 2022 12:12
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  7 NOV 2022 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Chapter_12_Notes.tex
 (./Chapter_12_Notes.tex
-LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-10-26> (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+LaTeX2e <2022-11-01>
+L3 programming layer <2022-11-02> (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count181
 \c@section=\count182
@@ -20,7 +20,7 @@ File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \c@table=\count188
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
-\bibindent=\dimen138
+\bibindent=\dimen140
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2022/04/08 v2.17n AMS math features
 \@mathmargin=\skip49
@@ -30,10 +30,10 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
-\ex@=\dimen139
+\ex@=\dimen141
 )) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen140
+\pmbraise@=\dimen142
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
@@ -54,7 +54,7 @@ LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen141
+\big@size=\dimen143
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \macc@depth=\count194
@@ -72,12 +72,12 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \column@=\count199
 \maxfields@=\count266
 \andhelp@=\toks18
-\eqnshift@=\dimen142
-\alignsep@=\dimen143
-\tagshift@=\dimen144
-\tagwidth@=\dimen145
-\totwidth@=\dimen146
-\lineht@=\dimen147
+\eqnshift@=\dimen144
+\alignsep@=\dimen145
+\tagshift@=\dimen146
+\tagwidth@=\dimen147
+\totwidth@=\dimen148
+\lineht@=\dimen149
 \@envbody=\toks19
 \multlinegap=\skip50
 \multlinetaggap=\skip51
@@ -130,7 +130,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2022-10-26 L3 programming layer (loader) 
+Package: expl3 2022-11-02 L3 programming layer (loader) 
 (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2022-10-26 L3 backend support: XeTeX
 \g__graphics_track_int=\count267
@@ -161,9 +161,9 @@ Package: fontspec-xetex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
 \l__fontspec_emdef_int=\count279
 \l__fontspec_strong_int=\count280
 \l__fontspec_strongdef_int=\count281
-\l__fontspec_tmpa_dim=\dimen148
-\l__fontspec_tmpb_dim=\dimen149
-\l__fontspec_tmpc_dim=\dimen150
+\l__fontspec_tmpa_dim=\dimen150
+\l__fontspec_tmpb_dim=\dimen151
+\l__fontspec_tmpc_dim=\dimen152
 (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
@@ -182,14 +182,14 @@ Package: xeCJK 2022/08/05 v3.9.1 Typesetting CJK scripts with XeLaTeX
 Package: ctexhook 2022/07/14 v2.5.10 Document and package hooks (CTEX)
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
 Package: xtemplate 2022-06-22 L3 Experimental prototype document functions
-\l__xtemplate_tmp_dim=\dimen151
+\l__xtemplate_tmp_dim=\dimen153
 \l__xtemplate_tmp_int=\count285
 \l__xtemplate_tmp_muskip=\muskip18
 \l__xtemplate_tmp_skip=\skip52
 )
 \l__xeCJK_tmp_int=\count286
 \l__xeCJK_tmp_box=\box54
-\l__xeCJK_tmp_dim=\dimen152
+\l__xeCJK_tmp_dim=\dimen154
 \l__xeCJK_tmp_skip=\skip53
 \g__xeCJK_space_factor_int=\count287
 \l__xeCJK_begin_int=\count288
@@ -205,43 +205,43 @@ Package: xtemplate 2022-06-22 L3 Experimental prototype document functions
 \l__xeCJK_last_skip=\skip54
 \c__xeCJK_none_node=\count290
 \g__xeCJK_node_int=\count291
-\c__xeCJK_CJK_node_dim=\dimen153
-\c__xeCJK_CJK-space_node_dim=\dimen154
-\c__xeCJK_default_node_dim=\dimen155
-\c__xeCJK_CJK-widow_node_dim=\dimen156
-\c__xeCJK_normalspace_node_dim=\dimen157
+\c__xeCJK_CJK_node_dim=\dimen155
+\c__xeCJK_CJK-space_node_dim=\dimen156
+\c__xeCJK_default_node_dim=\dimen157
+\c__xeCJK_CJK-widow_node_dim=\dimen158
+\c__xeCJK_normalspace_node_dim=\dimen159
 \c__xeCJK_default-space_node_skip=\skip55
 \l__xeCJK_ccglue_skip=\skip56
 \l__xeCJK_ecglue_skip=\skip57
 \l__xeCJK_punct_kern_skip=\skip58
 \l__xeCJK_indent_box=\box55
 \l__xeCJK_last_penalty_int=\count292
-\l__xeCJK_last_bound_dim=\dimen158
-\l__xeCJK_last_kern_dim=\dimen159
+\l__xeCJK_last_bound_dim=\dimen160
+\l__xeCJK_last_kern_dim=\dimen161
 \l__xeCJK_widow_penalty_int=\count293
 
 Package xtemplate Info: Declaring object type 'xeCJK/punctuation' taking 0
 (xtemplate)             argument(s) on line 2396.
 
-\l__xeCJK_fixed_punct_width_dim=\dimen160
-\l__xeCJK_mixed_punct_width_dim=\dimen161
-\l__xeCJK_middle_punct_width_dim=\dimen162
-\l__xeCJK_fixed_margin_width_dim=\dimen163
-\l__xeCJK_mixed_margin_width_dim=\dimen164
-\l__xeCJK_middle_margin_width_dim=\dimen165
-\l__xeCJK_bound_punct_width_dim=\dimen166
-\l__xeCJK_bound_margin_width_dim=\dimen167
-\l__xeCJK_margin_minimum_dim=\dimen168
-\l__xeCJK_kerning_total_width_dim=\dimen169
-\l__xeCJK_same_align_margin_dim=\dimen170
-\l__xeCJK_different_align_margin_dim=\dimen171
-\l__xeCJK_kerning_margin_width_dim=\dimen172
-\l__xeCJK_kerning_margin_minimum_dim=\dimen173
-\l__xeCJK_bound_dim=\dimen174
-\l__xeCJK_reverse_bound_dim=\dimen175
-\l__xeCJK_margin_dim=\dimen176
-\l__xeCJK_minimum_bound_dim=\dimen177
-\l__xeCJK_kerning_margin_dim=\dimen178
+\l__xeCJK_fixed_punct_width_dim=\dimen162
+\l__xeCJK_mixed_punct_width_dim=\dimen163
+\l__xeCJK_middle_punct_width_dim=\dimen164
+\l__xeCJK_fixed_margin_width_dim=\dimen165
+\l__xeCJK_mixed_margin_width_dim=\dimen166
+\l__xeCJK_middle_margin_width_dim=\dimen167
+\l__xeCJK_bound_punct_width_dim=\dimen168
+\l__xeCJK_bound_margin_width_dim=\dimen169
+\l__xeCJK_margin_minimum_dim=\dimen170
+\l__xeCJK_kerning_total_width_dim=\dimen171
+\l__xeCJK_same_align_margin_dim=\dimen172
+\l__xeCJK_different_align_margin_dim=\dimen173
+\l__xeCJK_kerning_margin_width_dim=\dimen174
+\l__xeCJK_kerning_margin_minimum_dim=\dimen175
+\l__xeCJK_bound_dim=\dimen176
+\l__xeCJK_reverse_bound_dim=\dimen177
+\l__xeCJK_margin_dim=\dimen178
+\l__xeCJK_minimum_bound_dim=\dimen179
+\l__xeCJK_kerning_margin_dim=\dimen180
 \g__xeCJK_family_int=\count294
 \l__xeCJK_fam_int=\count295
 \g__xeCJK_fam_allocation_int=\count296
@@ -299,7 +299,7 @@ LaTeX Info: Redefining \noprotrusionifhmode on input line 1045.
 LaTeX Info: Redefining \leftprotrusion on input line 1046.
 LaTeX Info: Redefining \rightprotrusion on input line 1056.
 LaTeX Info: Redefining \textls on input line 1234.
-\MT@outer@kern=\dimen179
+\MT@outer@kern=\dimen181
 LaTeX Info: Redefining \textmicrotypecontext on input line 1858.
 \MT@listname@count=\count300
 (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-xetex.def
@@ -325,8 +325,6 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 Package xcolor Info: Driver file: xetex.def on input line 227.
 (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
 File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
-\stockwidth=\dimen180
-\stockheight=\dimen181
 ) (/Users/daxiangna/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1369.
@@ -861,10 +859,10 @@ Package rerunfilecheck Info: File `Chapter_12_Notes.out' has not changed.
 (rerunfilecheck)             Checksum: 4C0106BD03B1AE34A47B9F2B8FB340D1;1232.
  ) 
 Here is how much of TeX's memory you used:
- 19940 strings out of 477738
- 391303 string characters out of 5842780
- 903902 words of memory out of 5000000
- 40735 multiletter control sequences out of 15000+600000
+ 19934 strings out of 477643
+ 391114 string characters out of 5840129
+ 905615 words of memory out of 5000000
+ 40824 multiletter control sequences out of 15000+600000
  476376 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,8n,121p,1013b,459s stack positions out of 10000i,1000n,20000p,200000b,200000s

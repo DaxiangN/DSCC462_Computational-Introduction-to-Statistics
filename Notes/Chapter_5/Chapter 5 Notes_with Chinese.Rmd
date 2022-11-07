@@ -277,5 +277,5 @@ title(main = "PDF of normal distribution",sub = "sigma = 1, mu = -5")
 
 1.  Suppose we are interested in the proportion of the time that an event occurs
 2.  If we take a sample of size $n$ and observe $x$ successes, then we could estimate the population proportion p by $\hat{p} = x/n$.
-3.  When $np \ge 5$ or $n(1-p) \ge 5$, it is considered that $\hat{p} \sim N\left(p, \sqrt{\frac{p(1-p)}{n}}\right)$.
+3.  When $np \ge 5$ AND $n(1-p) \ge 5$, it is considered that $\hat{p} \sim N\left(p, \sqrt{\frac{p(1-p)}{n}}\right)$.
 4.  ![](Screen%20Shot%202022-10-04%20at%202.05.44%20PM.png){width="600"}
