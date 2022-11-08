@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  7 NOV 2022 12:26
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  7 NOV 2022 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -870,43 +870,43 @@ File: IMG_6950.jpeg Graphic file (type bmp)
 [4]
 
 LaTeX Font Warning: Font shape `TU/STKaiti(0)/b/n' undefined
-(Font)              using `TU/STKaiti(0)/m/n' instead on input line 242.
+(Font)              using `TU/STKaiti(0)/m/n' instead on input line 244.
 
 [5] [6]
 File: Chapter 5 Notes_insertimage_4.png Graphic file (type bmp)
 <Chapter 5 Notes_insertimage_4.png>
+[7]
 File: Screen Shot 2022-10-03 at 11.14.04 PM.png Graphic file (type bmp)
 <Screen Shot 2022-10-03 at 11.14.04 PM.png>
-[7]
 File: Chapter-5-Notes_with-Chinese_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use Chapter-5-Notes_with-Chinese_files/figure-latex/unnamed-chunk-1-1.pdf>
-[8]
+[8] [9]
 File: Chapter-5-Notes_with-Chinese_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Chapter-5-Notes_with-Chinese_files/figure-latex/unnamed-chunk-2-1.pdf>
-[9]
 File: Screen Shot 2022-10-04 at 12.31.02 PM.png Graphic file (type bmp)
 <Screen Shot 2022-10-04 at 12.31.02 PM.png>
 [10]
 File: Screen Shot 2022-10-04 at 1.01.30 PM.png Graphic file (type bmp)
 <Screen Shot 2022-10-04 at 1.01.30 PM.png>
+[11]
 File: Screen Shot 2022-10-04 at 1.03.35 PM.png Graphic file (type bmp)
 <Screen Shot 2022-10-04 at 1.03.35 PM.png>
 File: Screen Shot 2022-10-04 at 1.10.24 PM.png Graphic file (type bmp)
 <Screen Shot 2022-10-04 at 1.10.24 PM.png>
 
-Overfull \hbox (11.93166pt too wide) in paragraph at lines 610--611
+Overfull \hbox (11.93166pt too wide) in paragraph at lines 612--613
 [][] 
  []
 
-[11]
+[12]
 File: Screen Shot 2022-10-04 at 2.05.44 PM.png Graphic file (type bmp)
 <Screen Shot 2022-10-04 at 2.05.44 PM.png>
 
-Overfull \hbox (11.93352pt too wide) in paragraph at lines 652--653
+Overfull \hbox (11.93352pt too wide) in paragraph at lines 654--655
 [][] 
  []
 
-[12] [13] (./Chapter-5-Notes_with-Chinese.aux)
+[13] (./Chapter-5-Notes_with-Chinese.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -916,10 +916,10 @@ Package rerunfilecheck Info: File `Chapter-5-Notes_with-Chinese.out' has not cha
 Here is how much of TeX's memory you used:
  19964 strings out of 477643
  395037 string characters out of 5840129
- 916710 words of memory out of 5000000
+ 915711 words of memory out of 5000000
  40839 multiletter control sequences out of 15000+600000
  476286 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,9n,121p,1025b,530s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,9n,121p,1025b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on Chapter-5-Notes_with-Chinese.pdf (13 pages).
