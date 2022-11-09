@@ -24,7 +24,7 @@ library(tidyverse)
 ```
 
 
-Q1: For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference? Another way to ask this question: if we sample for 20 times ($m = 20$), but each time with sample size $n = 100$, does that follow CLT?
+Q1: For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference? Another way to ask this question: if we sample for 20 times ($m = 3$), but each time with sample size $n = 1000$, does that follow CLT?
 
 # CLT and Sampling Distribution
 

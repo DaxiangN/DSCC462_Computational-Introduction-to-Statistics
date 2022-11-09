@@ -28,7 +28,14 @@ library(knitr)
 
 ## What is $V$ in the returned result of `wilcox.test`
 
-\
+```{r, echo = T}
+##
+  ##  Wilcoxon signed rank exact test
+  ##
+## data: data$air and data$sulf.diox
+## V = 21, p-value = 0.006653
+## alternative hypothesis: true location shift is not equal to 0
+```
 
 ## What is the definition of T in `psignrank`?
 
@@ -37,6 +44,28 @@ In the `psignrank` document(<https://www.rdocumentation.org/packages/stats/versi
 I therefore wonder if $T = T^+$ should be the definition of `psignrank` in R.
 
 [Another question regarding this topic]{.underline}: when testing the two-tailed hypothesis, when should we use `2*(1 - psignrank(T,n))` and `2*psignrank(T, n)`? i.e. what is the mean for the wilcoxon signed rank distribution? Is it $n(n + 1)/4$ as stated in the document?
+
+**This is right.**
+
+So when we calculate the p value, we determine whether to use `2*(1 - psignrank(T,n))` or `2*psignrank(T, n)` based on if $T > n(n + 1)/4$ or $T < n(n + 1)/4$, right?
+
+## How can we decide which probability to calculate in one-sided Wilcoxon Rank Sum test?
+
+In the Wilcoxon Rank Sum test, we always use $W = min(W_1, W_2)$ and $\mu_W = n_{min}*(n_{min} + n_{large} + 1)/2$ no matter if we want to know if $H_1: \mu_1 - \mu_2 < 0$ or $H_1: \mu_2 - \mu_1 < 0$, how to we determine if p-value = $1 - Pr(z < z_W)$ or p-value = $Pr(z < z_W)$?
+
+My understanding: it depends on which one you picked up for determining the W. In the example problem in the slides, H1 is about group 1 has less values, and W turns out to be W1, therefore p-value = Pr(z < 0). 
+
+## Question about CTL
+
+For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference? Another way to ask this question: if we sample for 3 times ($m = 3$), but each time with sample size $n = 1000$, does that follow CLT?
+
+\
+
+## is it okay to share the Infererence cheat sheet raw file?
+
+Willing to extend it.
+
+\
 
 # Wilcoxon Signed Rank Test
 
