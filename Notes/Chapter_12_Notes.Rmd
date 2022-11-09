@@ -53,7 +53,9 @@ So when we calculate the p value, we determine whether to use `2*(1 - psignrank(
 
 In the Wilcoxon Rank Sum test, we always use $W = min(W_1, W_2)$ and $\mu_W = n_{min}*(n_{min} + n_{large} + 1)/2$ no matter if we want to know if $H_1: \mu_1 - \mu_2 < 0$ or $H_1: \mu_2 - \mu_1 < 0$, how to we determine if p-value = $1 - Pr(z < z_W)$ or p-value = $Pr(z < z_W)$?
 
-My understanding: it depends on which one you picked up for determining the W. In the example problem in the slides, H1 is about group 1 has less values, and W turns out to be W1, therefore p-value = Pr(z < 0). 
+My understanding: it depends on which group has $W_{min}$. In the Wilcoxon Rank Sum test we are calculating the probability of getting $W_min$ in the distribution of $N(n_{min}*(n_{min} + n_{large} + 1)/2, sigma)$. In the example problem in the slides, H1 is about group 1 has less values, and group 1 turns out to have $W_{min}$, therefore p-value = Pr(z < 0). 
+
+\
 
 ## Question about CTL
 

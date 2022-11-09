@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  9 NOV 2022 11:34
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  9 NOV 2022 11:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,16 +871,21 @@ LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <12> not available
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 197--198
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 
  []
 
-[2] [3] (./Chapter_12_Notes.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+[2] [3] [4] (./Chapter_12_Notes.aux)
 Package rerunfilecheck Info: File `Chapter_12_Notes.out' has not changed.
 (rerunfilecheck)             Checksum: CF64A27FD686741AD48B0DB0D6012DD1;2278.
  ) 
@@ -891,6 +896,6 @@ Here is how much of TeX's memory you used:
  41326 multiletter control sequences out of 15000+600000
  476392 words of font info for 87 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,8n,121p,1013b,430s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,8n,121p,1013b,465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Chapter_12_Notes.pdf (3 pages).
+Output written on Chapter_12_Notes.pdf (4 pages).
