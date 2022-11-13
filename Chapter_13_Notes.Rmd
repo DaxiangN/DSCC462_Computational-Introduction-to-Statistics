@@ -1,0 +1,49 @@
+---
+title: "Chapter 13 Analysis of Variance"
+author: "Daxiang Na"
+date: "2022-11-10"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, eval=T, tidy=TRUE, tidy.opts=list(width.cutoff=70))
+library(tidyverse)
+library(knitr)
+```
+
+# Outline
+
+1.  how do we compare sample means for more than two groups?
+
+    1.  One-way ANOVA
+
+2.  Motivating illustration:
+
+3.  null: all means are equal, alternative: at least one of the population means differs from one of the others.
+
+4.  ANOVA: when k = 2, the F-test reduces to a two-sample t-test.
+
+5.  ANOVA table: SST = SSB + SSE
+
+6.  then what is SST for? Will be important in regression. Regression and ANOVA are mathematically the same thing, except that ANOVA is studying Categorical vs quantitative but regression is QQ.
+
+7.  Post-hoc analysis - Multiple Comparisons
+
+8.  what is the range of Bonferroni correction applied? It is possibly valid that we pick up a subset of groups (k out of n groups) to do pairwise test and use C(k,2) as denominator.
+
+9.  Significant ANOVA but not significant pairwise: overly conservative pairwise
+
+10. non-significant ANOVA but significant pairwise: pairwise overrules ANOVA.
