@@ -55,13 +55,13 @@ In the Wilcoxon Rank Sum test, we always use $W = min(W_1, W_2)$ and $\mu_W = n_
 
 My understanding: it depends on which group has $W_{min}$. In the Wilcoxon Rank Sum test we are calculating the probability of getting $W_{min}$ in the distribution of $N(n_{min}*(n_{min} + n_{large} + 1)/2, sigma)$. In the example problem in the slides, H1 is about group 1 has less values, and group 1 turns out to have $W_{min}$, therefore p-value = Pr(z < 0). 
 
-\
+**This understanding is correct**. The p-value will be determined by which group as $W_{min}$ and what $H_1$ is about.
 
 ## Question about CLT
 
 For sampling distribution, it can have sampling size $n$ and sampling time $m$, what determines if it follows CLT? $n$ or $m$? If we sample for 1 time and 100 times, each time with same size $n$, does that makes a difference? Another way to ask this question: if we sample for 3 times ($m = 3$), but each time with sample size $n = 1000$, does that follow CLT?
 
-\
+**Answer**: n determines the distribution of sampling. $\bar x \sim N(\mu, \sigma/\sqrt n)$. The change of m does not affect the distribution. What m makes a difference: when m = 1, you only see one $\bar x$ on histogram; when m = 100, you will see 100 $\bar x$ on histogram, and their distribution will be closer to the bell shape than m = 1. However, no matter if m = 1 or m = 100, their distribution does not change.
 
 ## is it okay to share the Infererence cheat sheet raw file?
 

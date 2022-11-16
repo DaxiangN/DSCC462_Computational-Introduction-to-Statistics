@@ -1,0 +1,36 @@
+---
+title: "Chapter 13 Inference of Correlation"
+author: "Daxiang Na"
+date: "2022-11-15"
+CJKmainfont: STKaiti
+output: 
+  pdf_document: 
+    includes:
+        header-includes:
+                - \usepackage{xeCJK}
+    latex_engine: xelatex
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+fontsize: 12pt
+---
+
+1. Denote the true population correlation of X and Y as rho
+2. Correlation example
+3. Correlation: inference
+	a. Use sample correlation r to do hypothesis testing
+	b. t = 
+	c. X and Y are normally distributed
+	d. There are non-parametric methods, but won't be covered in class.
+4. In R: cor.test()
+5. Limitations:
+	a. Only describes linear relationships
+	b. Could be missing nonlinear relationship
+6. Spearman's Rank Correlation Coefficient - more robust than pearson
+	a. Needs normal distribution assumption - maybe not, Dr. Kahng will check it.
+	b. Not sensitive to outliers.
+	c. Assumption is a little bit weaker (?), but may need those two populations to have same shape (histogram).
+In R: cor.test(exact = FALSE) when n >= 10, when n < 10, exact = T.

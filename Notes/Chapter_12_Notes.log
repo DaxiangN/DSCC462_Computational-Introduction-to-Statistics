@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  9 NOV 2022 12:15
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.11.5)  15 NOV 2022 22:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,17 +871,7 @@ LaTeX Font Warning: Font shape `TU/lmtt/bx/it' in size <12> not available
 [1
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
 
