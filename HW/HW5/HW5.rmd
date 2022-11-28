@@ -1,9 +1,4 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
----
----
 title: "DSCC/CSC/STAT 462 Assignment 5"
 output:
   pdf_document: default
@@ -12,6 +7,7 @@ output:
 subtitle: Due December 1, 2022 by 11:59 p.m.
 fontsize: 12pt
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
 ```
@@ -21,9 +17,13 @@ Please complete this assignment using `RMarkdown`, and submit the knitted PDF. *
 \vspace{5pt}
 
 1. The dataset "actg.csv" contains data on subjects who were enrolled in a HIV clinical trial. For this dataset, we are focusing on variables ``IVDrug`` and ``Age``. ``IVDrug`` is a categorical variable that indicates whether each subject never, previously, or currently uses IV drugs. ``Age`` lists the subject's age in year. Thus, we have age for subjects in three treatment groups. Assume that the samples were collected independently and come from normally distributed populations.
+
     a. Create side-by-side boxplots of age by IV use group. Does the equal variance assumption seem reasonable?
-    b. Construct an ANOVA table to test at the $\alpha=0.05$ significance level whether the average age in these three groups is different.  
+    
+    b. Construct an ANOVA table to test at the $\alpha=0.05$ significance level whether the average age in these three groups is different.
+    
     c. Further explore the results using a Bonferroni multiple comparison procedure with overall familywise error rate of $\alpha_{FWE}=0.05$. For this part, use the `pairwise.t.test()` function with `p.adj="bonferroni"`.
+    
     d. As an alternative approach to Bonferroni's multiple comparison adjustment, we will explore explore Scheffe's method for multiple comparisons. Scheffe's method is a more general method that does not depend on the number of comparisons being made (whereas Bonferroni directly adjust for that in doing $\alpha/k$ as the significance level). With Scheffe's method, the experimentwise error rate is $\alpha$ (i.e. the overall significance level), and it ensure that the probability of declaring at least one false significant comparison is at most $\alpha$. This method is preferable to Bonferroni particularly in cases when you are looking at many comparisons. For more information about Scheffe's method I would recommend taking a look at the video here: https://www.youtube.com/watch?v=l6i0xhnIzzk. Essentially, though, this is just another approach for testing for multiple comparisons. **For this question, implement Scheffe's method to test for significant pairwise differences at the experimentwise error rate of $\alpha=0.05$, and interpret the results.** To do Scheffe's method, you first need to go to the R Console (i.e. not directly in your .RMD document) and install the `DescTools` package. Then, in your .RMD document, load the package into R using `library(DescTools)`. The `ScheffeTest()` function will allow you to perform Scheffe's method of multiple comparisons. Look at `help(ScheffeTest)` for more information, but generally, you will put your `aov` object into the `ScheffeTest()` function, and it will look for significant pairwise comparisons.
 
 The rest of the questions in this homework assignment rely on the following premise. Suppose a nonprofit organization is looking to analyze trends among its donors, and they have collected data in "donors.csv". In particular, suppose they have a sample of 94 donors who gave a gift in response to a recent solicitation. Suppose you have been hired by the organization to analyze trends among the donors. We ultimately are interested in predicting donation amount based on other factors. Begin by predicting donation amount (`amount`) based on the income a donor is making (`income`).  
