@@ -10,65 +10,159 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = T, eval=T,tidy=TRUE, tidy.opts=list(width.cutoff=60))
+library(tidyverse)
+library(DescTools)
 ```
-  
-\vspace{5pt}
-Please complete this assignment using `RMarkdown`, and submit the knitted PDF. *For all hypothesis tests, state the hypotheses, report the test statistic and p-value, and comment on the results in the context of the problem.* 
+
 \vspace{5pt}
 
-1. The dataset "actg.csv" contains data on subjects who were enrolled in a HIV clinical trial. For this dataset, we are focusing on variables ``IVDrug`` and ``Age``. ``IVDrug`` is a categorical variable that indicates whether each subject never, previously, or currently uses IV drugs. ``Age`` lists the subject's age in year. Thus, we have age for subjects in three treatment groups. Assume that the samples were collected independently and come from normally distributed populations.
+Please complete this assignment using `RMarkdown`, and submit the knitted PDF. *For all hypothesis tests, state the hypotheses, report the test statistic and p-value, and comment on the results in the context of the problem.* \vspace{5pt}
 
-    a. Create side-by-side boxplots of age by IV use group. Does the equal variance assumption seem reasonable?
-    
-    b. Construct an ANOVA table to test at the $\alpha=0.05$ significance level whether the average age in these three groups is different.
-    
-    c. Further explore the results using a Bonferroni multiple comparison procedure with overall familywise error rate of $\alpha_{FWE}=0.05$. For this part, use the `pairwise.t.test()` function with `p.adj="bonferroni"`.
-    
-    d. As an alternative approach to Bonferroni's multiple comparison adjustment, we will explore explore Scheffe's method for multiple comparisons. Scheffe's method is a more general method that does not depend on the number of comparisons being made (whereas Bonferroni directly adjust for that in doing $\alpha/k$ as the significance level). With Scheffe's method, the experimentwise error rate is $\alpha$ (i.e. the overall significance level), and it ensure that the probability of declaring at least one false significant comparison is at most $\alpha$. This method is preferable to Bonferroni particularly in cases when you are looking at many comparisons. For more information about Scheffe's method I would recommend taking a look at the video here: https://www.youtube.com/watch?v=l6i0xhnIzzk. Essentially, though, this is just another approach for testing for multiple comparisons. **For this question, implement Scheffe's method to test for significant pairwise differences at the experimentwise error rate of $\alpha=0.05$, and interpret the results.** To do Scheffe's method, you first need to go to the R Console (i.e. not directly in your .RMD document) and install the `DescTools` package. Then, in your .RMD document, load the package into R using `library(DescTools)`. The `ScheffeTest()` function will allow you to perform Scheffe's method of multiple comparisons. Look at `help(ScheffeTest)` for more information, but generally, you will put your `aov` object into the `ScheffeTest()` function, and it will look for significant pairwise comparisons.
+1.  The dataset "actg.csv" contains data on subjects who were enrolled in a HIV clinical trial. For this dataset, we are focusing on variables `IVDrug` and `Age`. `IVDrug` is a categorical variable that indicates whether each subject never, previously, or currently uses IV drugs. `Age` lists the subject's age in year. Thus, we have age for subjects in three treatment groups. Assume that the samples were collected independently and come from normally distributed populations.
 
-The rest of the questions in this homework assignment rely on the following premise. Suppose a nonprofit organization is looking to analyze trends among its donors, and they have collected data in "donors.csv". In particular, suppose they have a sample of 94 donors who gave a gift in response to a recent solicitation. Suppose you have been hired by the organization to analyze trends among the donors. We ultimately are interested in predicting donation amount based on other factors. Begin by predicting donation amount (`amount`) based on the income a donor is making (`income`).  
+    a.  Create side-by-side boxplots of age by IV use group. Does the equal variance assumption seem reasonable?
 
-2. Let's begin with exploratory analysis.
+    ```{r}
+    df <- read.csv("actg.csv")
+    p <- ggplot(data = df, aes(x = IVDrug, y = Age))
+    p + geom_boxplot(aes(fill = IVDrug))
+    ```
 
-    a. State the regression assumptions in terms of the variables we are investigating. 
+    b.  Construct an ANOVA table to test at the $\alpha=0.05$ significance level whether the average age in these three groups is different.
 
-    b. What is the Pearson correlation between the donation amount and income?
+    ```{r}
+    n1 <- df %>% filter(IVDrug == "Currently") %>% nrow()
+    n2 <- df %>% filter(IVDrug == "Never") %>% nrow()
+    n3 <- df %>% filter(IVDrug == "Previously") %>% nrow()
+    n <- n1 + n2 + n3
+    s <- df %>% group_by(IVDrug) %>% summarise(sd = sd(Age), mean = mean(Age))
+    s1 <- pull(s[1,"sd"])
+    m1 <- pull(s[1,"mean"])
+    s2 <- pull(s[2,"sd"])
+    m2 <- pull(s[2,"mean"])
+    s3 <- pull(s[3,"sd"])
+    m3 <- pull(s[3,"mean"])
+    m <- (n1*m1 + n2*m2 + n3*m3)/n
+    SSE <- (n1 - 1)*s1^2 + (n2-1)*s2^2 + (n3 - 1)*s3^3
+    sw <- SSE/(n - 3)
+    SSB <- n1*(m1 - m)^2 + n2*(m2 - m)^2 + n3*(m3 - m)^2
+    sb <- SSB/(3-1)
+    f <- sb/sw
+    p <- 1 - pf(f, (3 - 1), (n - 3))
+    ```
 
-    c. Construct a scatterplot of donation amount over income. Comment on whether linear regression seems appropriate.
- 
-3. Now, let's move onto simple linear regression. 
+    ```{r}
+    sw
+    sb
+    m
+    f
+    p
+    ```
 
-    a. Using a simple linear regression analysis, calculate and report the prediction equation for donation amount as a function of income. 
-  
-    b. What is the estimated mean donation amount for a donor with an income of \$92,000?
+    Answer: $s_w = 110.0596$, $s_b = 4601.691$, $\bar x = 38.61251$, $F = \frac{s_b^2}{s_w^2} = 41.8109$, $p = 0 < \alpha=0.05$. We reject the null hypothesis and conclude that the equal variance assumption is not reasonable.
+
+    c.  Further explore the results using a Bonferroni multiple comparison procedure with overall familywise error rate of $\alpha_{FWE}=0.05$. For this part, use the `pairwise.t.test()` function with `p.adj="bonferroni"`.
+
+    ```{r}
+    pairwise.t.test(df$Age, df$IVDrug, p.adj="bonferroni")
+    ```
+
+    d.  As an alternative approach to Bonferroni's multiple comparison adjustment, we will explore explore Scheffe's method for multiple comparisons. Scheffe's method is a more general method that does not depend on the number of comparisons being made (whereas Bonferroni directly adjust for that in doing $\alpha/k$ as the significance level). With Scheffe's method, the experimentwise error rate is $\alpha$ (i.e. the overall significance level), and it ensure that the probability of declaring at least one false significant comparison is at most $\alpha$. This method is preferable to Bonferroni particularly in cases when you are looking at many comparisons. For more information about Scheffe's method I would recommend taking a look at the video here: <https://www.youtube.com/watch?v=l6i0xhnIzzk>. Essentially, though, this is just another approach for testing for multiple comparisons. **For this question, implement Scheffe's method to test for significant pairwise differences at the experimentwise error rate of** $\alpha=0.05$, and interpret the results. To do Scheffe's method, you first need to go to the R Console (i.e. not directly in your .RMD document) and install the `DescTools` package. Then, in your .RMD document, load the package into R using `library(DescTools)`. The `ScheffeTest()` function will allow you to perform Scheffe's method of multiple comparisons. Look at `help(ScheffeTest)` for more information, but generally, you will put your `aov` object into the `ScheffeTest()` function, and it will look for significant pairwise comparisons.
+
+    ```{r}
+    model1 <- aov(Age~IVDrug, data = df)
+    anova(model1)
+    ScheffeTest(model1, g = IVDrug)
+    ```
+
+    Answer: for all of the pairs (Never-Currently, Previously-Currently and Previously-Never), adjusted p values are lower than 0.05. We rejected the null hypothesis and conclude that there is significant difference between each pairs.
+
+The rest of the questions in this homework assignment rely on the following premise. Suppose a nonprofit organization is looking to analyze trends among its donors, and they have collected data in "donors.csv". In particular, suppose they have a sample of 94 donors who gave a gift in response to a recent solicitation. Suppose you have been hired by the organization to analyze trends among the donors. We ultimately are interested in predicting donation amount based on other factors. Begin by predicting donation amount (`amount`) based on the income a donor is making (`income`).
+
+2.  Let's begin with exploratory analysis.
+
+    a.  State the regression assumptions in terms of the variables we are investigating.
+
+    Answer: the donation amount and the income a donor is making are correlated.
+
+    b.  What is the Pearson correlation between the donation amount and income?
+
+    ```{r}
+    rm(list = ls())
+    df <- read.csv("donors.csv")
+    r <- cor(df$income, df$amount, method = "pearson")
+    r
+    ```
+
+    Answer: the Pearson correlation between the donation amount and income is $0.9185$.
+
+    c.  Construct a scatterplot of donation amount over income. Comment on whether linear regression seems appropriate.
+
+    ```{r}
+    p <- ggplot(data = df, aes(x = income, y = amount))
+    p + geom_point()
+    ```
+
+    Answer: from the scatter plot, linear regression appears to be very approperiate.
+
+3.  Now, let's move onto simple linear regression.
+
+    a.  Using a simple linear regression analysis, calculate and report the prediction equation for donation amount as a function of income.
+
+    ```{r}
+    model1 <- lm(formula = df$amount ~ df$income)
+    plot(df$income, df$amount)
+    abline(model1)
+    summary(model1)
+    ```
+
+    Answer: the prediction equation for donation amount as a function of income is $y = 1.623 * 10^{-3}x + 1.129$
+
+    b.  What is the estimated mean donation amount for a donor with an income of \$92,000?
+
+    ```{r}
+    f <- function(x) {1.623*10^(-3)*x + 1.129}
+    y1 <- f(92000)
+    y1
+    ```
+
+    Answer: the estimated mean donation amount for a donor with an income of \$92,000 is 150.445.
 
     c.  What is the estimated mean donation amount for a donor with an income of \$1,000,000?
-
-    d. Do you feel equally comfortable making predictions for the previous two questions? Explain. 
-
-    e. Create a 90\% confidence interval for average donation amount for a donor with an income of \$86,000. Interpret the results. You may find the `predict()` function useful. 
-
-    f. Create a 90\% prediction interval for average donation amount for a donor with an income of \$86,000. Interpret the results.
-
-    g. Construct a 95\% confidence interval for the slope of the estimated regression equation and interpret the results. You may find the `confint()` function useful.
-
-    h. Test the hypothesis that $H_0:\beta_1=0$ versus $H_1:\beta_1 \ne 0$ at the $\alpha=0.05$ significance level. What conclusion do you reach in the context of the problem? Report the test statistic. You can refer to the summary of your linear regression model to answer this question.
- 
-    i. What is the value of the coefficient of determination? Interpret this result in the context of the question.
-
-    j. Construct diagnostic plots (including a residual plot and a normal qq plot). Comment on the fit of the model with respect to the model assumptions from part a.
-
-4. Now, let's move onto multiple linear regression. 
-
-    a. Calculate the prediction equation for donation amount as a function of income, age, and sex. Report the prediction equation. 
- 
-    b. Use an F test at the $\alpha=0.05$ significance level to determine if `age` and/or `sex` significantly add to the model, once we account for `income`. Make sure to state your hypotheses, report the test statistic, and interpret the results in the context of the problem. For this part, you may want to run `anova` with both linear regression models you have previously made; it should look something like `anova(lm1, lm2)`.
-
     
+    ```{r}
+    y2 <- f(1000000)
+    y2
+    ```
+    
+    Answer: the estimated mean donation amount for a donor with an income of \$1,000,000 is 1624.129.
+    
+    d.  Do you feel equally comfortable making predictions for the previous two questions? Explain.
+    
+    Answer: I feel more comfortable with making prediction in c. than d., that is because \$92,000 is within the range of our data by which we fit the simple linear mode. \$1,000,000 is way out of range of our dataset (largest income is around \$200,000).
+
+    e.  Create a 90% confidence interval for average donation amount for a donor with an income of \$86,000. Interpret the results. You may find the `predict()` function useful.
+
+    f.  Create a 90% prediction interval for average donation amount for a donor with an income of \$86,000. Interpret the results.
+
+    g.  Construct a 95% confidence interval for the slope of the estimated regression equation and interpret the results. You may find the `confint()` function useful.
+
+    h.  Test the hypothesis that $H_0:\beta_1=0$ versus $H_1:\beta_1 \ne 0$ at the $\alpha=0.05$ significance level. What conclusion do you reach in the context of the problem? Report the test statistic. You can refer to the summary of your linear regression model to answer this question.
+
+    i.  What is the value of the coefficient of determination? Interpret this result in the context of the question.
+
+    j.  Construct diagnostic plots (including a residual plot and a normal qq plot). Comment on the fit of the model with respect to the model assumptions from part a.
+
+4.  Now, let's move onto multiple linear regression.
+
+    a.  Calculate the prediction equation for donation amount as a function of income, age, and sex. Report the prediction equation.
+
+    b.  Use an F test at the $\alpha=0.05$ significance level to determine if `age` and/or `sex` significantly add to the model, once we account for `income`. Make sure to state your hypotheses, report the test statistic, and interpret the results in the context of the problem. For this part, you may want to run `anova` with both linear regression models you have previously made; it should look something like `anova(lm1, lm2)`.
+
 Short Answers:
 
-  * About how long did this assignment take you? Did you feel it was too long, too short, or reasonable? 
-  
-  * Who, if anyone, did you work with on this assignment?
-  
-  * What questions do you have relating to any of the material we have covered so far in class?  
+-   About how long did this assignment take you? Did you feel it was too long, too short, or reasonable?
+
+-   Who, if anyone, did you work with on this assignment?
+
+-   What questions do you have relating to any of the material we have covered so far in class?
