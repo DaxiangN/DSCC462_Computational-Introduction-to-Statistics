@@ -1,0 +1,90 @@
+---
+title: "DSCC/CSC 462 Case Study #1"
+author: 'Tuesday, December 6, 2022'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,eval=T, tidy=T, tidy.opts = list(width.cutoff=60))
+library(tidyverse)
+```
+
+This is the first case study for DSCC/CSC 462. In this study, we will apply concepts we learned in the past few lectures. 
+
+Consider a group of aliens who live on two planets, Planet A and Planet B. Each year, each alien must choose whether or not to remain on their current planet or switch planets. The aliens make up their minds independently. 
+
+The files "PlanetA.csv" and "PlanetB.csv" contain data about which planet aliens chose. The "PlanetA1.csv" file contains choices by aliens living on Planet A and the "PlanetB1.csv" file contains choices by aliens living on Planet B. In each file, each line corresponds to an individual alien's choice given the current population of the planet, the total gross planet product (a measure of economic prosperity), and the season (each planet has one hot season and one cold season). A value of "1" in the "stayedA" (resp. "stayedB") column means that the alien chose to stay on Planet A (resp. Planet B) given those conditions, and a value of "0" means that the alien left Planet A (resp. Planet B) for Planet B (resp. Planet A).
+
+  1. Your first task is to learn how to predict whether an alien will choose Planet A or Planet B given the conditions of their planet. For this part, please justify your choice of model and explore different combinations and transformations of relevant variables. (Hint: use logistic regression with at least one log-transformed variable for at least one planet.)
+  
+```{r}
+dfA <- read.csv("PlanetA.csv")
+dfB <- read.csv("PlanetB.csv")
+logit1 <- glm(formula = stayedA ~ population + grossplanetproduct + season, family = "binomial", data = dfA)
+summary(logit1)
+```
+
+```{r}
+dfA["population"] <- log(dfA["population"])
+dfA["grossplanetproduct"] <- log(dfA["grossplanetproduct"])
+```
+
+```{r}
+q <- ggplot(dfA)
+q + geom_histogram(aes(x = population))
+```
+
+```{r}
+q + geom_histogram(aes(x = grossplanetproduct))
+```
+
+```{r}
+logit2 <- glm(formula = stayedA ~ population + grossplanetproduct + season, family = "binomial", data = dfA)
+summary(logit2)
+```
+
+```{r}
+logitB1 <- glm(formula = stayedB ~ population + grossplanetproduct + season, family = "binomial", data = dfB)
+summary(logitB1)
+```
+
+```{r}
+dfB["population"] <- log(dfB["population"])
+dfB["grossplanetproduct"] <- log(dfB["grossplanetproduct"])
+```
+
+```{r}
+Planet_A <- read.csv("PlanetA.csv")
+model_A_pp_data = expand.grid(population=seq(0, max(Planet_A$population)), season = as.factor(Planet_A$season))
+model_A_pp_data$predict = predict(model_A_pp, model_A_pp_data, type="response")
+ggplot(model_A_pp_data, aes(x= population, y=predict, color=factor(season), group=season)) +
+  geom_line()+
+  ylim(0,1)+
+  labs(x="Population", y="Occurence of stay in A")+
+  scale_color_discrete(name = "Season", labels = c("Hot", "Cold"))
+```
+
+
+  2. In year 1000 on the aliens' calendar, Planet A has a population of 72.30, a gross planet product of 53.19, and is currently in a hot season. Planet B has a population of 41.87, a gross planet product of 48.51, and is currently in a cold season. Use your model in Question 1 to predict the average probabilities of staying on Planet A and Planet B at the end of year 1000. 
+  
+```{r}
+rm(list = ls())
+dfA <- read.csv("PlanetA.csv")
+logitA1 <- glm(formula = stayedA ~ log(population) + season, family = "binomial", data = dfA)
+summary(logitA1)
+```
+ 
+```{r}
+predict(logitA1, newdata = data.frame(population = log(72.30), season = "hot"), interval = "prediction", level = 0.9)
+```
+
+```{r}
+predict(logitA1, newdata = data.frame(population = log(41.87), season = "cold"), interval = "prediction", level = 0.9)
+```
+
+
+  3. Assume that the probabilities in Question 2 remain constant for this question. Draw a Markov chain that shows the population flow between Planet A and Planet B. 
+
+  4. Based on the Markov chain in Question 3, calculate the steady-state population proportions of aliens on each planet in the long run (i.e., as time goes to infinity). 
+
+  5. In the year 10 trillion, we take a random sample of 1000 aliens and observe that 535 of them live on Planet A. Does this line up with our expectation of long-run behavior? Test at $\alpha = 0.01$. Explain your conclusion. 

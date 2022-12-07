@@ -1,5 +1,7 @@
 ---
 title: "DSCC/CSC/STAT 462 Assignment 5"
+author: "Daxiang Na"
+date: 2022.12.05
 output:
   pdf_document: default
   html_document:
@@ -103,20 +105,20 @@ The rest of the questions in this homework assignment rely on the following prem
     p + geom_point()
     ```
 
-    Answer: from the scatter plot, linear regression appears to be very approperiate.
+    Answer: from the scatter plot, linear regression appears to be very appropriate.
 
 3.  Now, let's move onto simple linear regression.
 
     a.  Using a simple linear regression analysis, calculate and report the prediction equation for donation amount as a function of income.
 
     ```{r}
-    model1 <- lm(formula = df$amount ~ df$income)
+    model1 <- lm(formula = amount ~ income, data = df)
     plot(df$income, df$amount)
     abline(model1)
     summary(model1)
     ```
 
-    Answer: the prediction equation for donation amount as a function of income is $y = 1.623 * 10^{-3}x + 1.129$
+    Answer: the prediction equation for donation amount as a function of income is $amount = 1.623 * 10^{-3} * income + 1.129$
 
     b.  What is the estimated mean donation amount for a donor with an income of \$92,000?
 
@@ -129,40 +131,98 @@ The rest of the questions in this homework assignment rely on the following prem
     Answer: the estimated mean donation amount for a donor with an income of \$92,000 is 150.445.
 
     c.  What is the estimated mean donation amount for a donor with an income of \$1,000,000?
-    
+
     ```{r}
     y2 <- f(1000000)
     y2
     ```
-    
+
     Answer: the estimated mean donation amount for a donor with an income of \$1,000,000 is 1624.129.
-    
+
     d.  Do you feel equally comfortable making predictions for the previous two questions? Explain.
-    
+
     Answer: I feel more comfortable with making prediction in c. than d., that is because \$92,000 is within the range of our data by which we fit the simple linear mode. \$1,000,000 is way out of range of our dataset (largest income is around \$200,000).
 
     e.  Create a 90% confidence interval for average donation amount for a donor with an income of \$86,000. Interpret the results. You may find the `predict()` function useful.
 
+    ```{r}
+    predict(model1, newdata = data.frame(income = 86000), interval = "confidence", level = 0.9)
+    ```
+
+    Answer: the 90% confidence interval for average donation amount for a donor with an income of \$86,000 is (136.9608, 144.4811).
+
     f.  Create a 90% prediction interval for average donation amount for a donor with an income of \$86,000. Interpret the results.
+
+    ```{r}
+    predict(model1, newdata = data.frame(income = 86000), interval = "prediction", level = 0.9)
+    ```
+
+    Answer: I am 90% confident that the interval (104.4402, 177.0018) contains the true donation amount for a donor with an income of \$86,000.
 
     g.  Construct a 95% confidence interval for the slope of the estimated regression equation and interpret the results. You may find the `confint()` function useful.
 
+    ```{r}
+    confint(model1, level = 0.95)
+    ```
+
+    Answer: I am 95% confident that the interval (0.001478471, 0.001767856) contains the true income slope.
+
     h.  Test the hypothesis that $H_0:\beta_1=0$ versus $H_1:\beta_1 \ne 0$ at the $\alpha=0.05$ significance level. What conclusion do you reach in the context of the problem? Report the test statistic. You can refer to the summary of your linear regression model to answer this question.
+
+    Answer: The test statistic is $22.280$. Given $p < 2*10^{-6} < \alpha = 0.05$, we reject the null hypothesis and conclude that the $\beta_1$ is significantly different from 0.
 
     i.  What is the value of the coefficient of determination? Interpret this result in the context of the question.
 
+    The coefficient of determination is 0.8436. This means 84.36% of donation amount variability can be explained by its linear relationship with the income of donor.
+
     j.  Construct diagnostic plots (including a residual plot and a normal qq plot). Comment on the fit of the model with respect to the model assumptions from part a.
+
+    ```{r}
+    res <- resid(model1)
+    plot(fitted(model1), res)
+    abline(0,0)
+    ```
+
+    ```{r}
+    qqnorm(res)
+    qqline(res)
+    ```
+
+    ```{r}
+    plot(density(res))
+    ```
+
+    Answer: the residual plot appears to show pattern when fitted values are large. On the Q-Q plot, the points tend to stray away from the line near the tails. Those indicates that our linear line may not be too appropriate for modeling the data.
 
 4.  Now, let's move onto multiple linear regression.
 
     a.  Calculate the prediction equation for donation amount as a function of income, age, and sex. Report the prediction equation.
 
+    ```{r}
+    model2 <- lm(amount ~ income + age + sex, data = df)
+    summary(model2)
+    ```
+
+    Answer: the prediction equation is $amount = 1.636 * 10^{-3} * income - 1.003 * age + 4.913 * sex + 45.66$ (male = 1, female = 0).
+
     b.  Use an F test at the $\alpha=0.05$ significance level to determine if `age` and/or `sex` significantly add to the model, once we account for `income`. Make sure to state your hypotheses, report the test statistic, and interpret the results in the context of the problem. For this part, you may want to run `anova` with both linear regression models you have previously made; it should look something like `anova(lm1, lm2)`.
+
+    ```{r}
+    anova(model1, model2)
+    ```
+
+    Answer: Hypotheses: $H_0$: age and sex do not significantly add to the model, $H_1$: at least one of those factors (age or sex) adds to the model once we account for income. The test statistics F is 11.068, p value = $5.04 * 10^{-5}$ < $\alpha = 0.05$. We reject the null hypothesis and conclude that `age` and/or `sex` significantly add to the model once we account for `income`.
 
 Short Answers:
 
 -   About how long did this assignment take you? Did you feel it was too long, too short, or reasonable?
 
+    About 2hrs. It is reasonable.
+
 -   Who, if anyone, did you work with on this assignment?
 
+    I work with my classmates.
+
 -   What questions do you have relating to any of the material we have covered so far in class?
+
+    No.
